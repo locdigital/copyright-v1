@@ -8,6 +8,7 @@ function getApiUrl() {
 }
 
 const ADMIN_SESSION_KEY = 'imagecopy_admin_session'
+const ADMIN_TOKEN_KEY = 'imagecopy_admin_token_str'
 
 function shouldUseStaticAdminPreview() {
   if (typeof window === 'undefined') return false
@@ -37,12 +38,30 @@ export function getStoredAdmin() {
   }
 }
 
-export function storeAdmin(admin) {
-  localStorage.setItem(ADMIN_SESSION_KEY, JSON.stringify(admin))
+export function getStoredToken() {
+  try {
+    return localStorage.getItem(ADMIN_TOKEN_KEY) || ''
+  } catch {
+    return ''
+  }
+}
+
+export function storeAdmin(admin, token) {
+  try {
+    localStorage.setItem(ADMIN_SESSION_KEY, JSON.stringify(admin))
+    if (token) localStorage.setItem(ADMIN_TOKEN_KEY, token)
+  } catch (error) {
+    console.warn('Failed to save session to localStorage:', error)
+  }
 }
 
 export function clearStoredAdmin() {
-  localStorage.removeItem(ADMIN_SESSION_KEY)
+  try {
+    localStorage.removeItem(ADMIN_SESSION_KEY)
+    localStorage.removeItem(ADMIN_TOKEN_KEY)
+  } catch (error) {
+    console.warn('Failed to clear session from localStorage:', error)
+  }
 }
 
 async function request(path, options = {}) {
@@ -50,10 +69,16 @@ async function request(path, options = {}) {
   const timeoutMs = options.body instanceof FormData ? 120000 : 15000
   const timeout = setTimeout(() => controller.abort(), timeoutMs)
   const baseUrl = getApiUrl()
+  const token = getStoredToken()
+
+  const headers = options.body instanceof FormData ? {} : { 'Content-Type': 'application/json' }
+  if (options.headers) Object.assign(headers, options.headers)
+  if (token) headers['Authorization'] = `Bearer ${token}`
+
   try {
     const response = await fetch(`${baseUrl}${path}`, {
       credentials: 'include',
-      headers: options.body instanceof FormData ? undefined : { 'Content-Type': 'application/json' },
+      headers,
       signal: controller.signal,
       ...options,
     })
@@ -69,7 +94,7 @@ async function request(path, options = {}) {
 export async function loginAdmin({ email, password, remember }) {
   if (shouldUseStaticAdminPreview()) {
     const admin = getStaticAdmin(email)
-    storeAdmin(admin)
+    storeAdmin(admin, 'static-demo-token')
     return admin
   }
 
@@ -77,7 +102,7 @@ export async function loginAdmin({ email, password, remember }) {
     method: 'POST',
     body: JSON.stringify({ email, password, remember }),
   })
-  storeAdmin(data.admin)
+  storeAdmin(data.admin, data.token)
   return data.admin
 }
 

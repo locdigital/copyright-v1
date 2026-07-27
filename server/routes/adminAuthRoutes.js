@@ -13,7 +13,7 @@ function adminCookieOptions(remember) {
   return {
     httpOnly: true,
     secure: env.adminCookieSecure,
-    sameSite: 'lax',
+    sameSite: env.adminCookieSecure ? 'none' : 'lax',
     path: '/',
     maxAge: remember ? 1000 * 60 * 60 * 24 * 30 : 1000 * 60 * 60 * 8,
   }
@@ -69,7 +69,7 @@ router.post('/login', async (request, response, next) => {
       await writeLocalAuditLog({ adminId: localAdmin.id, action: 'ADMIN_LOGIN_LOCAL_JSON', entityType: 'Admin', entityId: localAdmin.id, ipAddress: request.ip })
 
       response.cookie(env.adminCookieName, token, adminCookieOptions(Boolean(remember)))
-      return response.json({ admin: { id: localAdmin.id, fullName: localAdmin.fullName, email: localAdmin.email, role: localAdmin.role, avatarUrl: localAdmin.avatarUrl } })
+      return response.json({ admin: { id: localAdmin.id, fullName: localAdmin.fullName, email: localAdmin.email, role: localAdmin.role, avatarUrl: localAdmin.avatarUrl }, token })
     }
 
     const token = jwt.sign({ sub: admin.id, role: admin.role }, env.jwtSecret, { expiresIn: remember ? '30d' : '8h' })
@@ -81,7 +81,7 @@ router.post('/login', async (request, response, next) => {
     }
 
     response.cookie(env.adminCookieName, token, adminCookieOptions(Boolean(remember)))
-    response.json({ admin: { id: admin.id, fullName: admin.fullName, email: admin.email, role: admin.role, avatarUrl: admin.avatarUrl } })
+    response.json({ admin: { id: admin.id, fullName: admin.fullName, email: admin.email, role: admin.role, avatarUrl: admin.avatarUrl }, token })
   } catch (error) {
     next(error)
   }

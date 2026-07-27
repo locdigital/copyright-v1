@@ -15,7 +15,7 @@ export const env = {
   databaseUrl: process.env.DATABASE_URL || decode(defaultDb),
   jwtSecret: process.env.JWT_SECRET || 'vibe-copyright-secret-key-2026',
   adminCookieName: process.env.ADMIN_COOKIE_NAME || 'imagecopy_admin_token',
-  adminCookieSecure: process.env.ADMIN_COOKIE_SECURE === 'true',
+  adminCookieSecure: process.env.ADMIN_COOKIE_SECURE === 'true' || process.env.NODE_ENV === 'production' || Boolean(process.env.VERCEL),
   clientOrigin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
   uploadThingToken: process.env.UPLOADTHING_TOKEN || defaultToken,
   uploadThingSecret: process.env.UPLOADTHING_SECRET || decode(defaultSecret),

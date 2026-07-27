@@ -5,7 +5,13 @@ import { getLocalAdminById, isLocalJsonDbEnabled } from '../services/localJsonDb
 
 export async function requireAdmin(request, response, next) {
   try {
-    const token = request.cookies?.[env.adminCookieName]
+    let token = request.cookies?.[env.adminCookieName]
+    if (!token && request.headers.authorization) {
+      token = request.headers.authorization.replace(/^Bearer\s+/i, '')
+    }
+    if (!token && request.headers['x-admin-token']) {
+      token = request.headers['x-admin-token']
+    }
     if (!token) return response.status(401).json({ message: 'Admin authentication required.' })
 
     const payload = jwt.verify(token, env.jwtSecret)
