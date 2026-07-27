@@ -80,11 +80,12 @@ export async function fetchPublicImages(params = {}) {
   Object.entries(params).forEach(([key, value]) => {
     if (value !== undefined && value !== null && String(value).trim() !== '') searchParams.set(key, value)
   })
+  searchParams.set('_t', Date.now().toString())
   const query = searchParams.toString()
 
   let apiImages = []
   try {
-    const data = await request(`/api/images${query ? `?${query}` : ''}`)
+    const data = await request(`/api/images?${query}`)
     if (Array.isArray(data?.images)) {
       apiImages = data.images.map(ensureImageUrl)
     }

@@ -46,6 +46,10 @@ const imageInclude = {
 }
 
 router.get('/', async (request, response, next) => {
+  response.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+  response.setHeader('Pragma', 'no-cache')
+  response.setHeader('Expires', '0')
+
   try {
     const { page, limit, skip } = getPagination(request.query)
 
@@ -61,18 +65,32 @@ router.get('/', async (request, response, next) => {
     }
 
     const where = buildWhere(request.query)
-    const [images, total] = await Promise.all([
-      prisma.image.findMany({ where, include: imageInclude, orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }, { featured: 'desc' }], skip, take: limit }),
-      prisma.image.count({ where }),
-    ])
-
-    response.json({ images: images.map(presentImage), pagination: { page, limit, total, totalPages: Math.ceil(total / limit) || 1 } })
+    try {
+      const [images, total] = await Promise.all([
+        prisma.image.findMany({ where, include: imageInclude, orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }, { featured: 'desc' }], skip, take: limit }),
+        prisma.image.count({ where }),
+      ])
+      response.json({ images: images.map(presentImage), pagination: { page, limit, total, totalPages: Math.ceil(total / limit) || 1 } })
+    } catch (dbErr) {
+      console.warn('Prisma public images fetch warning, using local DB:', dbErr.message)
+      const { images, total } = await listLocalImages({
+        category: request.query.category,
+        search: request.query.search || request.query.q,
+        skip,
+        take: limit,
+      })
+      response.json({ images: images.map(presentImage), pagination: { page, limit, total, totalPages: Math.ceil(total / limit) || 1 } })
+    }
   } catch (error) {
     next(error)
   }
 })
 
 router.get('/:identifier', async (request, response, next) => {
+  response.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+  response.setHeader('Pragma', 'no-cache')
+  response.setHeader('Expires', '0')
+
   try {
     if (isLocalJsonDbEnabled()) {
       const image = await getLocalImageById(request.params.identifier)
@@ -82,17 +100,24 @@ router.get('/:identifier', async (request, response, next) => {
       return
     }
 
-    const image = await prisma.image.findFirst({ where: { OR: [{ id: request.params.identifier }, { slug: request.params.identifier }], deletedAt: null, status: { in: publicStatuses } }, include: imageInclude })
-    if (!image) return response.status(404).json({ message: 'Image not found.' })
+    try {
+      const image = await prisma.image.findFirst({ where: { OR: [{ id: request.params.identifier }, { slug: request.params.identifier }], deletedAt: null, status: { in: publicStatuses } }, include: imageInclude })
+      if (!image) return response.status(404).json({ message: 'Image not found.' })
 
-    const similarImages = await prisma.image.findMany({
-      where: { id: { not: image.id }, categoryId: image.categoryId, deletedAt: null, status: { in: publicStatuses } },
-      include: imageInclude,
-      orderBy: [{ featured: 'desc' }, { publishedAt: 'desc' }, { createdAt: 'desc' }],
-      take: 4,
-    })
+      const similarImages = await prisma.image.findMany({
+        where: { id: { not: image.id }, categoryId: image.categoryId, deletedAt: null, status: { in: publicStatuses } },
+        include: imageInclude,
+        orderBy: [{ featured: 'desc' }, { publishedAt: 'desc' }, { createdAt: 'desc' }],
+        take: 4,
+      })
 
-    response.json({ image: presentImage(image), similarImages: similarImages.map(presentImage) })
+      response.json({ image: presentImage(image), similarImages: similarImages.map(presentImage) })
+    } catch {
+      const image = await getLocalImageById(request.params.identifier)
+      if (!image) return response.status(404).json({ message: 'Image not found.' })
+      const { images } = await listLocalImages({ category: image.category?.slug || image.categoryId, take: 5 })
+      response.json({ image: presentImage(image), similarImages: images.filter((item) => item.id !== image.id).slice(0, 4).map(presentImage) })
+    }
   } catch (error) {
     next(error)
   }
