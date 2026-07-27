@@ -70,8 +70,13 @@ export function saveUserUploadedImage(image) {
   try {
     const existing = JSON.parse(localStorage.getItem(USER_UPLOADED_IMAGES_KEY) || '[]')
     const filtered = existing.filter((item) => item.id !== image.id && item.slug !== image.slug)
+    const imgUrl = image.image || image.previewFileUrl || image.originalFileUrl || image.thumbnailUrl || ''
     const formattedImage = {
       ...image,
+      image: imgUrl,
+      previewFileUrl: image.previewFileUrl || imgUrl,
+      originalFileUrl: image.originalFileUrl || imgUrl,
+      thumbnailUrl: image.thumbnailUrl || imgUrl,
       category: typeof image.category === 'object' ? image.category?.name : (image.category || 'General'),
       categorySlug: typeof image.category === 'object' ? image.category?.slug : (image.categoryId || 'general'),
       keywords: Array.isArray(image.keywords) ? image.keywords.map((k) => (typeof k === 'object' ? (k.keyword?.name || k.name) : k)) : [],

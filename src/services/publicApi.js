@@ -11,6 +11,18 @@ function getApiUrl() {
 
 let staticMarketplaceCache = null
 
+function ensureImageUrl(img) {
+  if (!img) return img
+  const imageUrl = img.image || img.previewFileUrl || img.originalFileUrl || img.thumbnailUrl || ''
+  return {
+    ...img,
+    image: imageUrl,
+    previewFileUrl: img.previewFileUrl || imageUrl,
+    originalFileUrl: img.originalFileUrl || imageUrl,
+    thumbnailUrl: img.thumbnailUrl || imageUrl,
+  }
+}
+
 async function request(path) {
   const baseUrl = getApiUrl()
   const response = await fetch(`${baseUrl}${path}`)
@@ -23,7 +35,7 @@ async function getStaticMarketplace() {
   if (staticMarketplaceCache) return staticMarketplaceCache
   const response = await fetch('/marketplace-images.json')
   const data = await response.json().catch(() => ({ images: [] }))
-  staticMarketplaceCache = data.images || []
+  staticMarketplaceCache = (data.images || []).map(ensureImageUrl)
   return staticMarketplaceCache
 }
 
@@ -48,7 +60,7 @@ async function fetchStaticImages(params = {}) {
   const filtered = (await getStaticMarketplace()).filter((image) => matchesQuery(image, params.q || params.search) && matchesCategory(image, params.category))
   const start = (page - 1) * limit
   return {
-    images: filtered.slice(start, start + limit),
+    images: filtered.slice(start, start + limit).map(ensureImageUrl),
     pagination: { page, limit, total: filtered.length, totalPages: Math.ceil(filtered.length / limit) || 1 },
     source: 'static-marketplace',
   }
@@ -56,9 +68,10 @@ async function fetchStaticImages(params = {}) {
 
 async function fetchStaticImage(id) {
   const images = await getStaticMarketplace()
-  const image = images.find((item) => item.id === id || item.slug === id)
-  if (!image) throw new Error('Image not found.')
-  const similarImages = images.filter((item) => item.id !== image.id && item.category === image.category).slice(0, 4)
+  const rawImage = images.find((item) => item.id === id || item.slug === id)
+  if (!rawImage) throw new Error('Image not found.')
+  const image = ensureImageUrl(rawImage)
+  const similarImages = images.filter((item) => item.id !== image.id && item.category === image.category).slice(0, 4).map(ensureImageUrl)
   return { image, similarImages, source: 'static-marketplace' }
 }
 
@@ -73,15 +86,15 @@ export async function fetchPublicImages(params = {}) {
   try {
     const data = await request(`/api/images${query ? `?${query}` : ''}`)
     if (Array.isArray(data?.images)) {
-      apiImages = data.images
+      apiImages = data.images.map(ensureImageUrl)
     }
   } catch (error) {
     console.warn('API fetch warning, using static fallback:', error)
   }
 
-  const userLocalImages = getUserUploadedImages()
+  const userLocalImages = getUserUploadedImages().map(ensureImageUrl)
   const staticData = await fetchStaticImages(params)
-  const staticImages = staticData.images || []
+  const staticImages = (staticData.images || []).map(ensureImageUrl)
 
   const seenSlugs = new Set()
   const combined = []
@@ -91,7 +104,7 @@ export async function fetchPublicImages(params = {}) {
     const key = img.slug || img.id
     if (key && !seenSlugs.has(key) && matchesQuery(img, params.q || params.search) && matchesCategory(img, params.category)) {
       seenSlugs.add(key)
-      combined.push(img)
+      combined.push(ensureImageUrl(img))
     }
   }
 
@@ -100,7 +113,7 @@ export async function fetchPublicImages(params = {}) {
     const key = img.slug || img.id
     if (key && !seenSlugs.has(key)) {
       seenSlugs.add(key)
-      combined.push(img)
+      combined.push(ensureImageUrl(img))
     }
   }
 
@@ -109,7 +122,7 @@ export async function fetchPublicImages(params = {}) {
     const key = img.slug || img.id
     if (key && !seenSlugs.has(key)) {
       seenSlugs.add(key)
-      combined.push(img)
+      combined.push(ensureImageUrl(img))
     }
   }
 
@@ -125,16 +138,23 @@ export async function fetchPublicImages(params = {}) {
 }
 
 export async function fetchPublicImage(id) {
-  const userLocalImages = getUserUploadedImages()
+  const userLocalImages = getUserUploadedImages().map(ensureImageUrl)
   const foundLocal = userLocalImages.find((item) => item.id === id || item.slug === id)
   if (foundLocal) {
-    const similarImages = userLocalImages.filter((item) => item.id !== foundLocal.id).slice(0, 4)
-    return { image: foundLocal, similarImages, source: 'browser-local' }
+    const image = ensureImageUrl(foundLocal)
+    const similarImages = userLocalImages.filter((item) => item.id !== image.id).slice(0, 4).map(ensureImageUrl)
+    return { image, similarImages, source: 'browser-local' }
   }
 
   try {
     const data = await request(`/api/images/${id}`)
-    if (data?.image) return data
+    if (data?.image) {
+      return {
+        ...data,
+        image: ensureImageUrl(data.image),
+        similarImages: Array.isArray(data.similarImages) ? data.similarImages.map(ensureImageUrl) : [],
+      }
+    }
   } catch (error) {
     console.warn('API fetch single image warning:', error)
   }
