@@ -152,7 +152,7 @@ export async function createLocalImage({ body, storedFile, admin }) {
     propertyReleaseAvailable: body.propertyReleaseAvailable === 'true',
     status: body.status || 'PUBLISHED',
     featured: body.featured === 'true',
-    publishedAt: body.publishedAt || null,
+    publishedAt: body.publishedAt || new Date().toISOString(),
     scheduledAt: body.scheduledAt || null,
     deletedAt: null,
     keywords: keywordNames.map((name) => ({ name, slug: slugify(name) })),

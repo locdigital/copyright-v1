@@ -30,8 +30,7 @@ function parseKeywords(value) {
 
 function parsePublishedAt(body) {
   if (body.publishedAt) return new Date(body.publishedAt)
-  if (['PUBLISHED', 'APPROVED'].includes(body.status)) return new Date()
-  return null
+  return new Date()
 }
 
 function getImageSlug(body, title) {
