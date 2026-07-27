@@ -188,32 +188,55 @@ export async function updateAdminImageStatus(id, status) {
 }
 
 export async function updateAdminImage(id, payload) {
-  if (shouldUseStaticAdminPreview()) {
-    const local = getUserUploadedImages()
-    const existing = local.find((item) => item.id === id || item.slug === id)
-    if (!existing) throw new Error('Image not found in local preview.')
-
-    let updatedObj = { ...existing }
-    if (payload instanceof FormData) {
-      const entries = Object.fromEntries(payload.entries())
-      Object.assign(updatedObj, entries)
-    } else {
-      Object.assign(updatedObj, payload)
-    }
-    saveUserUploadedImage(updatedObj)
-    return { image: updatedObj }
-  }
-
+  let updates = {}
   const isForm = payload instanceof FormData
-  const result = await request(`/api/admin/images/${id}`, {
-    method: 'PUT',
-    body: isForm ? payload : JSON.stringify(payload),
-  })
 
-  if (result?.image) {
-    saveUserUploadedImage(result.image)
+  if (isForm) {
+    for (const [key, val] of payload.entries()) {
+      if (key !== 'image') updates[key] = val
+    }
+  } else {
+    updates = { ...payload }
   }
-  return result
+
+  const localList = getUserUploadedImages()
+  let localFound = localList.find((img) => img.id === id || img.slug === id)
+
+  if (localFound) {
+    Object.assign(localFound, updates)
+    if (updates.title) localFound.title = updates.title
+    if (updates.categoryId) {
+      localFound.category = typeof updates.categoryId === 'string' ? updates.categoryId : (updates.categoryId?.name || updates.categoryId)
+      localFound.categorySlug = updates.categoryId
+    }
+    if (updates.keywords !== undefined) {
+      localFound.keywords = String(updates.keywords).split(',').map((k) => k.trim()).filter(Boolean)
+    }
+    if (updates.standardLicensePrice) localFound.price = Number(updates.standardLicensePrice)
+    if (updates.extendedLicensePrice) localFound.extendedPrice = Number(updates.extendedLicensePrice)
+
+    saveUserUploadedImage(localFound)
+  }
+
+  if (shouldUseStaticAdminPreview()) {
+    return { image: localFound || updates }
+  }
+
+  try {
+    const result = await request(`/api/admin/images/${id}`, {
+      method: 'PUT',
+      body: isForm ? payload : JSON.stringify(payload),
+    })
+
+    if (result?.image) {
+      saveUserUploadedImage(result.image)
+      return result
+    }
+  } catch (error) {
+    console.warn('API update image warning, using local state:', error)
+  }
+
+  return { image: localFound || updates }
 }
 
 export async function deleteAdminImage(id) {

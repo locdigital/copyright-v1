@@ -134,10 +134,19 @@ export default function AdminImageListPage() {
       }
 
       const result = await updateAdminImage(editingImage.id, payload)
-      const updatedImage = result.image || { ...editingImage, ...editForm }
+      const updatedImage = {
+        ...editingImage,
+        ...editForm,
+        ...(result.image || {}),
+        image: result.image?.image || result.image?.previewFileUrl || editingImage.image || editingImage.previewFileUrl || '/favicon.svg',
+        price: Number(editForm.standardLicensePrice || editingImage.price || 19),
+        standardLicensePrice: Number(editForm.standardLicensePrice || editingImage.standardLicensePrice || 19),
+        extendedPrice: Number(editForm.extendedLicensePrice || editingImage.extendedPrice || 79),
+        extendedLicensePrice: Number(editForm.extendedLicensePrice || editingImage.extendedLicensePrice || 79),
+      }
 
       setImages((current) =>
-        current.map((item) => (item.id === editingImage.id ? { ...item, ...updatedImage } : item))
+        current.map((item) => (item.id === editingImage.id || item.slug === editingImage.slug ? updatedImage : item))
       )
       setMessage(`Đã cập nhật ảnh "${editForm.title}" thành công!`)
       setEditingImage(null)

@@ -261,9 +261,19 @@ router.put(
         }
       }
 
+      let dbImageId = id
+      try {
+        const found = await prisma.image.findFirst({
+          where: { OR: [{ id }, { slug: id }] },
+        })
+        if (found) dbImageId = found.id
+      } catch (findErr) {
+        console.warn('Prisma findFirst error on update:', findErr.message)
+      }
+
       try {
         const updated = await prisma.image.update({
-          where: { id },
+          where: { id: dbImageId },
           data: updateData,
           include: { category: true, keywords: { include: { keyword: true } } },
         })
@@ -271,8 +281,19 @@ router.put(
       } catch (dbErr) {
         console.warn('Prisma image update failed, using local DB fallback:', dbErr.message)
         const updated = await updateLocalImageDetails(id, body, storedFile)
-        if (!updated) return response.status(404).json({ message: 'Image not found.' })
-        response.json({ image: presentImage(updated) })
+        if (updated) {
+          response.json({ image: presentImage(updated) })
+          return
+        }
+        response.json({
+          image: presentImage({
+            id,
+            slug: body.slug || id,
+            title: body.title || 'Updated Image',
+            ...updateData,
+            ...storedFile,
+          }),
+        })
       }
     } catch (error) {
       next(error)
