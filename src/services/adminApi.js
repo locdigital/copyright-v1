@@ -9,6 +9,7 @@ function getApiUrl() {
 
 const ADMIN_SESSION_KEY = 'imagecopy_admin_session'
 const ADMIN_TOKEN_KEY = 'imagecopy_admin_token_str'
+const USER_UPLOADED_IMAGES_KEY = 'imagecopy_user_uploaded_images'
 
 function shouldUseStaticAdminPreview() {
   if (typeof window === 'undefined') return false
@@ -61,6 +62,31 @@ export function clearStoredAdmin() {
     localStorage.removeItem(ADMIN_TOKEN_KEY)
   } catch (error) {
     console.warn('Failed to clear session from localStorage:', error)
+  }
+}
+
+export function saveUserUploadedImage(image) {
+  if (!image) return
+  try {
+    const existing = JSON.parse(localStorage.getItem(USER_UPLOADED_IMAGES_KEY) || '[]')
+    const filtered = existing.filter((item) => item.id !== image.id && item.slug !== image.slug)
+    const formattedImage = {
+      ...image,
+      category: typeof image.category === 'object' ? image.category?.name : (image.category || 'General'),
+      categorySlug: typeof image.category === 'object' ? image.category?.slug : (image.categoryId || 'general'),
+      keywords: Array.isArray(image.keywords) ? image.keywords.map((k) => (typeof k === 'object' ? (k.keyword?.name || k.name) : k)) : [],
+    }
+    localStorage.setItem(USER_UPLOADED_IMAGES_KEY, JSON.stringify([formattedImage, ...filtered]))
+  } catch (err) {
+    console.warn('Failed to save uploaded image to localStorage:', err)
+  }
+}
+
+export function getUserUploadedImages() {
+  try {
+    return JSON.parse(localStorage.getItem(USER_UPLOADED_IMAGES_KEY) || '[]')
+  } catch {
+    return []
   }
 }
 
@@ -122,10 +148,15 @@ export async function fetchAdminCategories() {
 
 export async function createAdminImage(formData) {
   if (shouldUseStaticAdminPreview()) {
-    return { image: saveDemoImage(formData), storage: 'browser preview', staticMode: true }
+    const demo = saveDemoImage(formData)
+    return { image: demo, storage: 'browser preview', staticMode: true }
   }
 
-  return request('/api/admin/images', { method: 'POST', body: formData })
+  const result = await request('/api/admin/images', { method: 'POST', body: formData })
+  if (result?.image) {
+    saveUserUploadedImage(result.image)
+  }
+  return result
 }
 
 export function saveDemoImage(formData) {
@@ -135,5 +166,6 @@ export function saveDemoImage(formData) {
   entries.imageName = formData.get('image')?.name || 'local-preview-file'
   const current = JSON.parse(localStorage.getItem('imagecopy_demo_admin_images') || '[]')
   localStorage.setItem('imagecopy_demo_admin_images', JSON.stringify([entries, ...current]))
+  saveUserUploadedImage(entries)
   return entries
 }

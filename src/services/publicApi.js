@@ -1,3 +1,5 @@
+import { getUserUploadedImages } from './adminApi.js'
+
 function getApiUrl() {
   if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL
   if (typeof window !== 'undefined') {
@@ -77,12 +79,23 @@ export async function fetchPublicImages(params = {}) {
     console.warn('API fetch warning, using static fallback:', error)
   }
 
+  const userLocalImages = getUserUploadedImages()
   const staticData = await fetchStaticImages(params)
   const staticImages = staticData.images || []
 
   const seenSlugs = new Set()
   const combined = []
 
+  // 1. Highest priority: User uploaded images in current browser session
+  for (const img of userLocalImages) {
+    const key = img.slug || img.id
+    if (key && !seenSlugs.has(key) && matchesQuery(img, params.q || params.search) && matchesCategory(img, params.category)) {
+      seenSlugs.add(key)
+      combined.push(img)
+    }
+  }
+
+  // 2. Second priority: Live API images from Supabase
   for (const img of apiImages) {
     const key = img.slug || img.id
     if (key && !seenSlugs.has(key)) {
@@ -91,6 +104,7 @@ export async function fetchPublicImages(params = {}) {
     }
   }
 
+  // 3. Third priority: Static seed marketplace images
   for (const img of staticImages) {
     const key = img.slug || img.id
     if (key && !seenSlugs.has(key)) {
@@ -106,11 +120,18 @@ export async function fetchPublicImages(params = {}) {
   return {
     images: combined.slice(start, start + limit),
     pagination: { page, limit, total: combined.length, totalPages: Math.ceil(combined.length / limit) || 1 },
-    source: apiImages.length > 0 ? 'combined-live-and-static' : 'static-marketplace',
+    source: 'multi-source-hybrid',
   }
 }
 
 export async function fetchPublicImage(id) {
+  const userLocalImages = getUserUploadedImages()
+  const foundLocal = userLocalImages.find((item) => item.id === id || item.slug === id)
+  if (foundLocal) {
+    const similarImages = userLocalImages.filter((item) => item.id !== foundLocal.id).slice(0, 4)
+    return { image: foundLocal, similarImages, source: 'browser-local' }
+  }
+
   try {
     const data = await request(`/api/images/${id}`)
     if (data?.image) return data
