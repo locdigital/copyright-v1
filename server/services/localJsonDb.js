@@ -50,12 +50,16 @@ async function ensureDb() {
 }
 
 async function writeDb(data) {
-  await fs.mkdir(storageDir, { recursive: true })
-  await fs.writeFile(dataFile, JSON.stringify(data, null, 2))
+  try {
+    await fs.mkdir(storageDir, { recursive: true })
+    await fs.writeFile(dataFile, JSON.stringify(data, null, 2))
+  } catch (error) {
+    console.warn('Storage directory read-only on serverless runtime:', error.message)
+  }
 }
 
 export function isLocalJsonDbEnabled() {
-  return process.env.LOCAL_JSON_DB === 'true'
+  return process.env.LOCAL_JSON_DB === 'true' || !process.env.DATABASE_URL
 }
 
 export async function findLocalAdminByEmail(email) {
