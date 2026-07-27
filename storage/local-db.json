@@ -1,0 +1,2429 @@
+{
+  "admins": [
+    {
+      "id": "demo-admin",
+      "fullName": "Demo Admin",
+      "email": "admin@imagecopyrighthub.test",
+      "role": "SUPER_ADMIN",
+      "avatarUrl": null,
+      "isActive": true,
+      "lastLoginAt": "2026-07-27T06:58:29.344Z",
+      "createdAt": "2026-07-25T15:42:50.918Z",
+      "updatedAt": "2026-07-27T06:58:29.344Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "nature",
+      "name": "Nature",
+      "slug": "nature",
+      "description": "Nature stock image collection",
+      "thumbnailUrl": null,
+      "isActive": true,
+      "sortOrder": 1,
+      "createdAt": "2026-07-25T15:42:50.918Z",
+      "updatedAt": "2026-07-25T15:42:50.918Z"
+    },
+    {
+      "id": "business",
+      "name": "Business",
+      "slug": "business",
+      "description": "Business stock image collection",
+      "thumbnailUrl": null,
+      "isActive": true,
+      "sortOrder": 2,
+      "createdAt": "2026-07-25T15:42:50.918Z",
+      "updatedAt": "2026-07-25T15:42:50.918Z"
+    },
+    {
+      "id": "technology",
+      "name": "Technology",
+      "slug": "technology",
+      "description": "Technology stock image collection",
+      "thumbnailUrl": null,
+      "isActive": true,
+      "sortOrder": 3,
+      "createdAt": "2026-07-25T15:42:50.918Z",
+      "updatedAt": "2026-07-25T15:42:50.918Z"
+    },
+    {
+      "id": "people",
+      "name": "People",
+      "slug": "people",
+      "description": "People stock image collection",
+      "thumbnailUrl": null,
+      "isActive": true,
+      "sortOrder": 4,
+      "createdAt": "2026-07-25T15:42:50.918Z",
+      "updatedAt": "2026-07-25T15:42:50.918Z"
+    },
+    {
+      "id": "travel",
+      "name": "Travel",
+      "slug": "travel",
+      "description": "Travel stock image collection",
+      "thumbnailUrl": null,
+      "isActive": true,
+      "sortOrder": 5,
+      "createdAt": "2026-07-25T15:42:50.918Z",
+      "updatedAt": "2026-07-25T15:42:50.918Z"
+    },
+    {
+      "id": "food",
+      "name": "Food",
+      "slug": "food",
+      "description": "Food stock image collection",
+      "thumbnailUrl": null,
+      "isActive": true,
+      "sortOrder": 6,
+      "createdAt": "2026-07-25T15:42:50.918Z",
+      "updatedAt": "2026-07-25T15:42:50.918Z"
+    },
+    {
+      "id": "lifestyle",
+      "name": "Lifestyle",
+      "slug": "lifestyle",
+      "description": "Lifestyle stock image collection",
+      "thumbnailUrl": null,
+      "isActive": true,
+      "sortOrder": 7,
+      "createdAt": "2026-07-25T15:42:50.918Z",
+      "updatedAt": "2026-07-25T15:42:50.918Z"
+    },
+    {
+      "id": "backgrounds",
+      "name": "Backgrounds",
+      "slug": "backgrounds",
+      "description": "Backgrounds stock image collection",
+      "thumbnailUrl": null,
+      "isActive": true,
+      "sortOrder": 8,
+      "createdAt": "2026-07-25T15:42:50.918Z",
+      "updatedAt": "2026-07-25T15:42:50.918Z"
+    },
+    {
+      "id": "animals",
+      "name": "Animals",
+      "slug": "animals",
+      "description": "Animals stock image collection",
+      "thumbnailUrl": null,
+      "isActive": true,
+      "sortOrder": 9,
+      "createdAt": "2026-07-26T04:24:45.545Z",
+      "updatedAt": "2026-07-26T04:24:45.545Z"
+    }
+  ],
+  "images": [
+    {
+      "id": "img-1785039955315-dsc-2325",
+      "title": "Gray Cat Walking Outdoors",
+      "slug": "gray-cat-walking-outdoors-1785039955315",
+      "shortDescription": "Gray cat walking outdoors on a warm textured path.",
+      "fullDescription": "Gray cat walking outdoors on a warm textured path. Curated for commercial websites, editorial layouts, social campaigns, brand presentations, and digital creative projects.",
+      "altText": "Gray Cat Walking Outdoors stock image by Image Copyright Hub",
+      "pageTitle": "Gray Cat Walking Outdoors | Royalty-free stock image",
+      "metaDescription": "Download gray cat walking outdoors as a royalty-free stock image from Image Copyright Hub.",
+      "canonicalUrl": null,
+      "originalFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d9nKBDWUwv70dzxqOKM9knY2V1QaXb8ZcGSfR",
+      "previewFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d9nKBDWUwv70dzxqOKM9knY2V1QaXb8ZcGSfR",
+      "thumbnailUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d9nKBDWUwv70dzxqOKM9knY2V1QaXb8ZcGSfR",
+      "watermarkFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d9nKBDWUwv70dzxqOKM9knY2V1QaXb8ZcGSfR",
+      "fileName": "1785039953366-dsc-2325.webp",
+      "fileExtension": "webp",
+      "mimeType": "image/webp",
+      "fileSize": 623814,
+      "width": 3373,
+      "height": 6000,
+      "orientation": "Portrait",
+      "originalSourceFile": "DSC_2325.JPG",
+      "primaryColor": null,
+      "categoryId": "animals",
+      "category": {
+        "id": "animals",
+        "name": "Animals",
+        "slug": "animals",
+        "description": "Animals stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 9,
+        "createdAt": "2026-07-26T04:24:45.545Z",
+        "updatedAt": "2026-07-26T04:24:45.545Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null,
+        "isActive": true,
+        "lastLoginAt": "2026-07-26T04:02:55.654Z",
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-26T04:02:55.654Z"
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "Image Copyright Hub",
+      "copyrightNotice": "© 2026 Image Copyright Hub. All rights reserved.",
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "PUBLISHED",
+      "featured": false,
+      "publishedAt": "2026-07-26T04:25:55.315Z",
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "gray cat",
+          "slug": "gray-cat"
+        },
+        {
+          "name": "cat",
+          "slug": "cat"
+        },
+        {
+          "name": "pet",
+          "slug": "pet"
+        },
+        {
+          "name": "outdoor",
+          "slug": "outdoor"
+        },
+        {
+          "name": "animal",
+          "slug": "animal"
+        },
+        {
+          "name": "street",
+          "slug": "street"
+        }
+      ],
+      "createdAt": "2026-07-26T04:25:55.315Z",
+      "updatedAt": "2026-07-26T04:25:55.315Z"
+    },
+    {
+      "id": "img-1785039952366-dsc-2296",
+      "title": "Window Framed Forest Portrait",
+      "slug": "window-framed-forest-portrait-1785039952366",
+      "shortDescription": "Creative portrait framed through a window with a lush forest background.",
+      "fullDescription": "Creative portrait framed through a window with a lush forest background. Curated for commercial websites, editorial layouts, social campaigns, brand presentations, and digital creative projects.",
+      "altText": "Window Framed Forest Portrait stock image by Image Copyright Hub",
+      "pageTitle": "Window Framed Forest Portrait | Royalty-free stock image",
+      "metaDescription": "Download window framed forest portrait as a royalty-free stock image from Image Copyright Hub.",
+      "canonicalUrl": null,
+      "originalFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dTQSMX2PVxuQyaSLjA7st8kPIqo5YWpHOlCrZ",
+      "previewFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dTQSMX2PVxuQyaSLjA7st8kPIqo5YWpHOlCrZ",
+      "thumbnailUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dTQSMX2PVxuQyaSLjA7st8kPIqo5YWpHOlCrZ",
+      "watermarkFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dTQSMX2PVxuQyaSLjA7st8kPIqo5YWpHOlCrZ",
+      "fileName": "1785039950947-dsc-2296.webp",
+      "fileExtension": "webp",
+      "mimeType": "image/webp",
+      "fileSize": 409776,
+      "width": 3373,
+      "height": 6000,
+      "orientation": "Portrait",
+      "originalSourceFile": "DSC_2296.JPG",
+      "primaryColor": null,
+      "categoryId": "people",
+      "category": {
+        "id": "people",
+        "name": "People",
+        "slug": "people",
+        "description": "People stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 4,
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-25T15:42:50.918Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null,
+        "isActive": true,
+        "lastLoginAt": "2026-07-26T04:02:55.654Z",
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-26T04:02:55.654Z"
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "Image Copyright Hub",
+      "copyrightNotice": "© 2026 Image Copyright Hub. All rights reserved.",
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "PUBLISHED",
+      "featured": false,
+      "publishedAt": "2026-07-26T04:25:52.365Z",
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "portrait",
+          "slug": "portrait"
+        },
+        {
+          "name": "window",
+          "slug": "window"
+        },
+        {
+          "name": "forest",
+          "slug": "forest"
+        },
+        {
+          "name": "creative",
+          "slug": "creative"
+        },
+        {
+          "name": "person",
+          "slug": "person"
+        },
+        {
+          "name": "lifestyle",
+          "slug": "lifestyle"
+        }
+      ],
+      "createdAt": "2026-07-26T04:25:52.365Z",
+      "updatedAt": "2026-07-26T04:25:52.365Z"
+    },
+    {
+      "id": "img-1785039950018-dsc-2263",
+      "title": "Relaxed Ginger Cat Indoors",
+      "slug": "relaxed-ginger-cat-indoors-1785039950018",
+      "shortDescription": "Relaxed ginger cat lying indoors with warm natural tones.",
+      "fullDescription": "Relaxed ginger cat lying indoors with warm natural tones. Curated for commercial websites, editorial layouts, social campaigns, brand presentations, and digital creative projects.",
+      "altText": "Relaxed Ginger Cat Indoors stock image by Image Copyright Hub",
+      "pageTitle": "Relaxed Ginger Cat Indoors | Royalty-free stock image",
+      "metaDescription": "Download relaxed ginger cat indoors as a royalty-free stock image from Image Copyright Hub.",
+      "canonicalUrl": null,
+      "originalFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dJT0D0bQn8k3yuvqifr9CLwhM2HWoTXGROm6g",
+      "previewFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dJT0D0bQn8k3yuvqifr9CLwhM2HWoTXGROm6g",
+      "thumbnailUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dJT0D0bQn8k3yuvqifr9CLwhM2HWoTXGROm6g",
+      "watermarkFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dJT0D0bQn8k3yuvqifr9CLwhM2HWoTXGROm6g",
+      "fileName": "1785039948299-dsc-2263.webp",
+      "fileExtension": "webp",
+      "mimeType": "image/webp",
+      "fileSize": 519550,
+      "width": 6000,
+      "height": 3373,
+      "orientation": "Landscape",
+      "originalSourceFile": "DSC_2263.JPG",
+      "primaryColor": null,
+      "categoryId": "animals",
+      "category": {
+        "id": "animals",
+        "name": "Animals",
+        "slug": "animals",
+        "description": "Animals stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 9,
+        "createdAt": "2026-07-26T04:24:45.545Z",
+        "updatedAt": "2026-07-26T04:24:45.545Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null,
+        "isActive": true,
+        "lastLoginAt": "2026-07-26T04:02:55.654Z",
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-26T04:02:55.654Z"
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "Image Copyright Hub",
+      "copyrightNotice": "© 2026 Image Copyright Hub. All rights reserved.",
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "PUBLISHED",
+      "featured": false,
+      "publishedAt": "2026-07-26T04:25:50.018Z",
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "ginger cat",
+          "slug": "ginger-cat"
+        },
+        {
+          "name": "cat",
+          "slug": "cat"
+        },
+        {
+          "name": "pet",
+          "slug": "pet"
+        },
+        {
+          "name": "indoor",
+          "slug": "indoor"
+        },
+        {
+          "name": "animal",
+          "slug": "animal"
+        },
+        {
+          "name": "relaxed",
+          "slug": "relaxed"
+        }
+      ],
+      "createdAt": "2026-07-26T04:25:50.018Z",
+      "updatedAt": "2026-07-26T04:25:50.018Z"
+    },
+    {
+      "id": "img-1785039947365-dsc-2249",
+      "title": "Vietnamese Noodle Soup Table",
+      "slug": "vietnamese-noodle-soup-table-1785039947365",
+      "shortDescription": "Vietnamese noodle soup served with herbs and sauces on a restaurant table.",
+      "fullDescription": "Vietnamese noodle soup served with herbs and sauces on a restaurant table. Curated for commercial websites, editorial layouts, social campaigns, brand presentations, and digital creative projects.",
+      "altText": "Vietnamese Noodle Soup Table stock image by Image Copyright Hub",
+      "pageTitle": "Vietnamese Noodle Soup Table | Royalty-free stock image",
+      "metaDescription": "Download vietnamese noodle soup table as a royalty-free stock image from Image Copyright Hub.",
+      "canonicalUrl": null,
+      "originalFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dyleIutGrMq84Tt9YvwQZoduNbx1GAHpXKhLj",
+      "previewFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dyleIutGrMq84Tt9YvwQZoduNbx1GAHpXKhLj",
+      "thumbnailUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dyleIutGrMq84Tt9YvwQZoduNbx1GAHpXKhLj",
+      "watermarkFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dyleIutGrMq84Tt9YvwQZoduNbx1GAHpXKhLj",
+      "fileName": "1785039941164-dsc-2249.webp",
+      "fileExtension": "webp",
+      "mimeType": "image/webp",
+      "fileSize": 1270758,
+      "width": 6000,
+      "height": 3373,
+      "orientation": "Landscape",
+      "originalSourceFile": "DSC_2249.JPG",
+      "primaryColor": null,
+      "categoryId": "food",
+      "category": {
+        "id": "food",
+        "name": "Food",
+        "slug": "food",
+        "description": "Food stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 6,
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-25T15:42:50.918Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null,
+        "isActive": true,
+        "lastLoginAt": "2026-07-26T04:02:55.654Z",
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-26T04:02:55.654Z"
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "Image Copyright Hub",
+      "copyrightNotice": "© 2026 Image Copyright Hub. All rights reserved.",
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "PUBLISHED",
+      "featured": false,
+      "publishedAt": "2026-07-26T04:25:47.365Z",
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "pho",
+          "slug": "pho"
+        },
+        {
+          "name": "noodle soup",
+          "slug": "noodle-soup"
+        },
+        {
+          "name": "vietnamese food",
+          "slug": "vietnamese-food"
+        },
+        {
+          "name": "restaurant",
+          "slug": "restaurant"
+        },
+        {
+          "name": "food",
+          "slug": "food"
+        },
+        {
+          "name": "meal",
+          "slug": "meal"
+        }
+      ],
+      "createdAt": "2026-07-26T04:25:47.365Z",
+      "updatedAt": "2026-07-26T04:25:47.365Z"
+    },
+    {
+      "id": "img-1785039939994-dsc-2225",
+      "title": "Forest Trail Height Sign",
+      "slug": "forest-trail-height-sign-1785039939994",
+      "shortDescription": "Forest trail sign marking elevation in a lush natural hiking area.",
+      "fullDescription": "Forest trail sign marking elevation in a lush natural hiking area. Curated for commercial websites, editorial layouts, social campaigns, brand presentations, and digital creative projects.",
+      "altText": "Forest Trail Height Sign stock image by Image Copyright Hub",
+      "pageTitle": "Forest Trail Height Sign | Royalty-free stock image",
+      "metaDescription": "Download forest trail height sign as a royalty-free stock image from Image Copyright Hub.",
+      "canonicalUrl": null,
+      "originalFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dtK7kaO8jfy8BRwpGYEMqCdiT3ke2PuNghxJr",
+      "previewFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dtK7kaO8jfy8BRwpGYEMqCdiT3ke2PuNghxJr",
+      "thumbnailUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dtK7kaO8jfy8BRwpGYEMqCdiT3ke2PuNghxJr",
+      "watermarkFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dtK7kaO8jfy8BRwpGYEMqCdiT3ke2PuNghxJr",
+      "fileName": "1785039931563-dsc-2225.webp",
+      "fileExtension": "webp",
+      "mimeType": "image/webp",
+      "fileSize": 1522408,
+      "width": 3373,
+      "height": 6000,
+      "orientation": "Portrait",
+      "originalSourceFile": "DSC_2225.JPG",
+      "primaryColor": null,
+      "categoryId": "travel",
+      "category": {
+        "id": "travel",
+        "name": "Travel",
+        "slug": "travel",
+        "description": "Travel stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 5,
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-25T15:42:50.918Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null,
+        "isActive": true,
+        "lastLoginAt": "2026-07-26T04:02:55.654Z",
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-26T04:02:55.654Z"
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "Image Copyright Hub",
+      "copyrightNotice": "© 2026 Image Copyright Hub. All rights reserved.",
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "PUBLISHED",
+      "featured": false,
+      "publishedAt": "2026-07-26T04:25:39.994Z",
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "forest",
+          "slug": "forest"
+        },
+        {
+          "name": "trail",
+          "slug": "trail"
+        },
+        {
+          "name": "sign",
+          "slug": "sign"
+        },
+        {
+          "name": "hiking",
+          "slug": "hiking"
+        },
+        {
+          "name": "travel",
+          "slug": "travel"
+        },
+        {
+          "name": "nature",
+          "slug": "nature"
+        }
+      ],
+      "createdAt": "2026-07-26T04:25:39.994Z",
+      "updatedAt": "2026-07-26T04:25:39.994Z"
+    },
+    {
+      "id": "img-1785039930342-dsc-2217",
+      "title": "Small Bird Nest In Tree",
+      "slug": "small-bird-nest-in-tree-1785039930342",
+      "shortDescription": "Small bird nest hidden among leafy tree branches in natural light.",
+      "fullDescription": "Small bird nest hidden among leafy tree branches in natural light. Curated for commercial websites, editorial layouts, social campaigns, brand presentations, and digital creative projects.",
+      "altText": "Small Bird Nest In Tree stock image by Image Copyright Hub",
+      "pageTitle": "Small Bird Nest In Tree | Royalty-free stock image",
+      "metaDescription": "Download small bird nest in tree as a royalty-free stock image from Image Copyright Hub.",
+      "canonicalUrl": null,
+      "originalFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dWO3vrO9NW2p8i3Yr5gmDO9Te6GylZtxunFqE",
+      "previewFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dWO3vrO9NW2p8i3Yr5gmDO9Te6GylZtxunFqE",
+      "thumbnailUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dWO3vrO9NW2p8i3Yr5gmDO9Te6GylZtxunFqE",
+      "watermarkFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dWO3vrO9NW2p8i3Yr5gmDO9Te6GylZtxunFqE",
+      "fileName": "1785039926249-dsc-2217.webp",
+      "fileExtension": "webp",
+      "mimeType": "image/webp",
+      "fileSize": 1089814,
+      "width": 3373,
+      "height": 6000,
+      "orientation": "Portrait",
+      "originalSourceFile": "DSC_2217.JPG",
+      "primaryColor": null,
+      "categoryId": "nature",
+      "category": {
+        "id": "nature",
+        "name": "Nature",
+        "slug": "nature",
+        "description": "Nature stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 1,
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-25T15:42:50.918Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null,
+        "isActive": true,
+        "lastLoginAt": "2026-07-26T04:02:55.654Z",
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-26T04:02:55.654Z"
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "Image Copyright Hub",
+      "copyrightNotice": "© 2026 Image Copyright Hub. All rights reserved.",
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "PUBLISHED",
+      "featured": false,
+      "publishedAt": "2026-07-26T04:25:30.342Z",
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "bird nest",
+          "slug": "bird-nest"
+        },
+        {
+          "name": "tree",
+          "slug": "tree"
+        },
+        {
+          "name": "nature",
+          "slug": "nature"
+        },
+        {
+          "name": "wildlife",
+          "slug": "wildlife"
+        },
+        {
+          "name": "branches",
+          "slug": "branches"
+        },
+        {
+          "name": "outdoor",
+          "slug": "outdoor"
+        }
+      ],
+      "createdAt": "2026-07-26T04:25:30.342Z",
+      "updatedAt": "2026-07-26T04:25:30.342Z"
+    },
+    {
+      "id": "img-1785039925105-dsc-2114",
+      "title": "Cafe Table Drinks",
+      "slug": "cafe-table-drinks-1785039925105",
+      "shortDescription": "Cafe table with drinks and a relaxed social atmosphere.",
+      "fullDescription": "Cafe table with drinks and a relaxed social atmosphere. Curated for commercial websites, editorial layouts, social campaigns, brand presentations, and digital creative projects.",
+      "altText": "Cafe Table Drinks stock image by Image Copyright Hub",
+      "pageTitle": "Cafe Table Drinks | Royalty-free stock image",
+      "metaDescription": "Download cafe table drinks as a royalty-free stock image from Image Copyright Hub.",
+      "canonicalUrl": null,
+      "originalFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d1nl0lXf7Ayk2olQmJFHu84IC60d5Dj9TXacv",
+      "previewFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d1nl0lXf7Ayk2olQmJFHu84IC60d5Dj9TXacv",
+      "thumbnailUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d1nl0lXf7Ayk2olQmJFHu84IC60d5Dj9TXacv",
+      "watermarkFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d1nl0lXf7Ayk2olQmJFHu84IC60d5Dj9TXacv",
+      "fileName": "1785039921454-dsc-2114.webp",
+      "fileExtension": "webp",
+      "mimeType": "image/webp",
+      "fileSize": 673670,
+      "width": 6000,
+      "height": 3373,
+      "orientation": "Landscape",
+      "originalSourceFile": "DSC_2114.JPG",
+      "primaryColor": null,
+      "categoryId": "lifestyle",
+      "category": {
+        "id": "lifestyle",
+        "name": "Lifestyle",
+        "slug": "lifestyle",
+        "description": "Lifestyle stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 7,
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-25T15:42:50.918Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null,
+        "isActive": true,
+        "lastLoginAt": "2026-07-26T04:02:55.654Z",
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-26T04:02:55.654Z"
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "Image Copyright Hub",
+      "copyrightNotice": "© 2026 Image Copyright Hub. All rights reserved.",
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "PUBLISHED",
+      "featured": false,
+      "publishedAt": "2026-07-26T04:25:25.105Z",
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "cafe",
+          "slug": "cafe"
+        },
+        {
+          "name": "drinks",
+          "slug": "drinks"
+        },
+        {
+          "name": "table",
+          "slug": "table"
+        },
+        {
+          "name": "lifestyle",
+          "slug": "lifestyle"
+        },
+        {
+          "name": "conversation",
+          "slug": "conversation"
+        },
+        {
+          "name": "restaurant",
+          "slug": "restaurant"
+        }
+      ],
+      "createdAt": "2026-07-26T04:25:25.105Z",
+      "updatedAt": "2026-07-26T04:25:25.105Z"
+    },
+    {
+      "id": "img-1785039920491-dsc-2072",
+      "title": "Casual Cafe Portrait",
+      "slug": "casual-cafe-portrait-1785039920491",
+      "shortDescription": "Casual portrait scene captured in a warm cafe environment.",
+      "fullDescription": "Casual portrait scene captured in a warm cafe environment. Curated for commercial websites, editorial layouts, social campaigns, brand presentations, and digital creative projects.",
+      "altText": "Casual Cafe Portrait stock image by Image Copyright Hub",
+      "pageTitle": "Casual Cafe Portrait | Royalty-free stock image",
+      "metaDescription": "Download casual cafe portrait as a royalty-free stock image from Image Copyright Hub.",
+      "canonicalUrl": null,
+      "originalFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dSIRrzMAVEvKO6ThiMngl2dxV3bJFer5Rjupo",
+      "previewFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dSIRrzMAVEvKO6ThiMngl2dxV3bJFer5Rjupo",
+      "thumbnailUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dSIRrzMAVEvKO6ThiMngl2dxV3bJFer5Rjupo",
+      "watermarkFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dSIRrzMAVEvKO6ThiMngl2dxV3bJFer5Rjupo",
+      "fileName": "1785039910727-dsc-2072.webp",
+      "fileExtension": "webp",
+      "mimeType": "image/webp",
+      "fileSize": 1509210,
+      "width": 3373,
+      "height": 6000,
+      "orientation": "Portrait",
+      "originalSourceFile": "DSC_2072.JPG",
+      "primaryColor": null,
+      "categoryId": "people",
+      "category": {
+        "id": "people",
+        "name": "People",
+        "slug": "people",
+        "description": "People stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 4,
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-25T15:42:50.918Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null,
+        "isActive": true,
+        "lastLoginAt": "2026-07-26T04:02:55.654Z",
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-26T04:02:55.654Z"
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "Image Copyright Hub",
+      "copyrightNotice": "© 2026 Image Copyright Hub. All rights reserved.",
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "PUBLISHED",
+      "featured": false,
+      "publishedAt": "2026-07-26T04:25:20.491Z",
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "portrait",
+          "slug": "portrait"
+        },
+        {
+          "name": "cafe",
+          "slug": "cafe"
+        },
+        {
+          "name": "person",
+          "slug": "person"
+        },
+        {
+          "name": "lifestyle",
+          "slug": "lifestyle"
+        },
+        {
+          "name": "urban",
+          "slug": "urban"
+        },
+        {
+          "name": "casual",
+          "slug": "casual"
+        }
+      ],
+      "createdAt": "2026-07-26T04:25:20.491Z",
+      "updatedAt": "2026-07-26T04:25:20.491Z"
+    },
+    {
+      "id": "img-1785039909370-dsc-2028",
+      "title": "Quiet Workspace Interior",
+      "slug": "quiet-workspace-interior-1785039909370",
+      "shortDescription": "Quiet modern workspace interior with a person working at a desk.",
+      "fullDescription": "Quiet modern workspace interior with a person working at a desk. Curated for commercial websites, editorial layouts, social campaigns, brand presentations, and digital creative projects.",
+      "altText": "Quiet Workspace Interior stock image by Image Copyright Hub",
+      "pageTitle": "Quiet Workspace Interior | Royalty-free stock image",
+      "metaDescription": "Download quiet workspace interior as a royalty-free stock image from Image Copyright Hub.",
+      "canonicalUrl": null,
+      "originalFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dtGUnin8jfy8BRwpGYEMqCdiT3ke2PuNghxJr",
+      "previewFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dtGUnin8jfy8BRwpGYEMqCdiT3ke2PuNghxJr",
+      "thumbnailUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dtGUnin8jfy8BRwpGYEMqCdiT3ke2PuNghxJr",
+      "watermarkFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dtGUnin8jfy8BRwpGYEMqCdiT3ke2PuNghxJr",
+      "fileName": "1785039906320-dsc-2028.webp",
+      "fileExtension": "webp",
+      "mimeType": "image/webp",
+      "fileSize": 405502,
+      "width": 6000,
+      "height": 3373,
+      "orientation": "Landscape",
+      "originalSourceFile": "DSC_2028.JPG",
+      "primaryColor": null,
+      "categoryId": "lifestyle",
+      "category": {
+        "id": "lifestyle",
+        "name": "Lifestyle",
+        "slug": "lifestyle",
+        "description": "Lifestyle stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 7,
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-25T15:42:50.918Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null,
+        "isActive": true,
+        "lastLoginAt": "2026-07-26T04:02:55.654Z",
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-26T04:02:55.654Z"
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "Image Copyright Hub",
+      "copyrightNotice": "© 2026 Image Copyright Hub. All rights reserved.",
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "PUBLISHED",
+      "featured": false,
+      "publishedAt": "2026-07-26T04:25:09.370Z",
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "workspace",
+          "slug": "workspace"
+        },
+        {
+          "name": "interior",
+          "slug": "interior"
+        },
+        {
+          "name": "desk",
+          "slug": "desk"
+        },
+        {
+          "name": "lifestyle",
+          "slug": "lifestyle"
+        },
+        {
+          "name": "minimal",
+          "slug": "minimal"
+        },
+        {
+          "name": "work",
+          "slug": "work"
+        }
+      ],
+      "createdAt": "2026-07-26T04:25:09.370Z",
+      "updatedAt": "2026-07-26T04:25:09.370Z"
+    },
+    {
+      "id": "img-1785039905444-dsc-1328",
+      "title": "White Cat On Garden Railing",
+      "slug": "white-cat-on-garden-railing-1785039905444",
+      "shortDescription": "White cat sitting on a garden railing with dark green background contrast.",
+      "fullDescription": "White cat sitting on a garden railing with dark green background contrast. Curated for commercial websites, editorial layouts, social campaigns, brand presentations, and digital creative projects.",
+      "altText": "White Cat On Garden Railing stock image by Image Copyright Hub",
+      "pageTitle": "White Cat On Garden Railing | Royalty-free stock image",
+      "metaDescription": "Download white cat on garden railing as a royalty-free stock image from Image Copyright Hub.",
+      "canonicalUrl": null,
+      "originalFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70du3neUW0TcBZ3KCzv6OUFopPrtXgY4ybQHs8J",
+      "previewFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70du3neUW0TcBZ3KCzv6OUFopPrtXgY4ybQHs8J",
+      "thumbnailUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70du3neUW0TcBZ3KCzv6OUFopPrtXgY4ybQHs8J",
+      "watermarkFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70du3neUW0TcBZ3KCzv6OUFopPrtXgY4ybQHs8J",
+      "fileName": "1785039903838-dsc-1328.webp",
+      "fileExtension": "webp",
+      "mimeType": "image/webp",
+      "fileSize": 518372,
+      "width": 4000,
+      "height": 6000,
+      "orientation": "Portrait",
+      "originalSourceFile": "DSC_1328.JPG",
+      "primaryColor": null,
+      "categoryId": "animals",
+      "category": {
+        "id": "animals",
+        "name": "Animals",
+        "slug": "animals",
+        "description": "Animals stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 9,
+        "createdAt": "2026-07-26T04:24:45.545Z",
+        "updatedAt": "2026-07-26T04:24:45.545Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null,
+        "isActive": true,
+        "lastLoginAt": "2026-07-26T04:02:55.654Z",
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-26T04:02:55.654Z"
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "Image Copyright Hub",
+      "copyrightNotice": "© 2026 Image Copyright Hub. All rights reserved.",
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "PUBLISHED",
+      "featured": false,
+      "publishedAt": "2026-07-26T04:25:05.444Z",
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "white cat",
+          "slug": "white-cat"
+        },
+        {
+          "name": "cat",
+          "slug": "cat"
+        },
+        {
+          "name": "pet",
+          "slug": "pet"
+        },
+        {
+          "name": "railing",
+          "slug": "railing"
+        },
+        {
+          "name": "garden",
+          "slug": "garden"
+        },
+        {
+          "name": "animal",
+          "slug": "animal"
+        }
+      ],
+      "createdAt": "2026-07-26T04:25:05.444Z",
+      "updatedAt": "2026-07-26T04:25:05.444Z"
+    },
+    {
+      "id": "img-1785039902810-dsc-1319",
+      "title": "Curly Dog On Wooden Porch",
+      "slug": "curly-dog-on-wooden-porch-1785039902810",
+      "shortDescription": "Curly dog resting on a rustic wooden porch in a warm outdoor setting.",
+      "fullDescription": "Curly dog resting on a rustic wooden porch in a warm outdoor setting. Curated for commercial websites, editorial layouts, social campaigns, brand presentations, and digital creative projects.",
+      "altText": "Curly Dog On Wooden Porch stock image by Image Copyright Hub",
+      "pageTitle": "Curly Dog On Wooden Porch | Royalty-free stock image",
+      "metaDescription": "Download curly dog on wooden porch as a royalty-free stock image from Image Copyright Hub.",
+      "canonicalUrl": null,
+      "originalFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70deLSEd4ZQ7VfK1z83G0FpmAoyXihjsZ49B5u6",
+      "previewFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70deLSEd4ZQ7VfK1z83G0FpmAoyXihjsZ49B5u6",
+      "thumbnailUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70deLSEd4ZQ7VfK1z83G0FpmAoyXihjsZ49B5u6",
+      "watermarkFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70deLSEd4ZQ7VfK1z83G0FpmAoyXihjsZ49B5u6",
+      "fileName": "1785039899617-dsc-1319.webp",
+      "fileExtension": "webp",
+      "mimeType": "image/webp",
+      "fileSize": 949602,
+      "width": 6000,
+      "height": 4000,
+      "orientation": "Landscape",
+      "originalSourceFile": "DSC_1319.JPG",
+      "primaryColor": null,
+      "categoryId": "animals",
+      "category": {
+        "id": "animals",
+        "name": "Animals",
+        "slug": "animals",
+        "description": "Animals stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 9,
+        "createdAt": "2026-07-26T04:24:45.545Z",
+        "updatedAt": "2026-07-26T04:24:45.545Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null,
+        "isActive": true,
+        "lastLoginAt": "2026-07-26T04:02:55.654Z",
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-26T04:02:55.654Z"
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "Image Copyright Hub",
+      "copyrightNotice": "© 2026 Image Copyright Hub. All rights reserved.",
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "PUBLISHED",
+      "featured": false,
+      "publishedAt": "2026-07-26T04:25:02.810Z",
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "dog",
+          "slug": "dog"
+        },
+        {
+          "name": "pet",
+          "slug": "pet"
+        },
+        {
+          "name": "porch",
+          "slug": "porch"
+        },
+        {
+          "name": "animal",
+          "slug": "animal"
+        },
+        {
+          "name": "wooden",
+          "slug": "wooden"
+        },
+        {
+          "name": "lifestyle",
+          "slug": "lifestyle"
+        }
+      ],
+      "createdAt": "2026-07-26T04:25:02.810Z",
+      "updatedAt": "2026-07-26T04:25:02.810Z"
+    },
+    {
+      "id": "img-1785039898397-dsc-1309",
+      "title": "Ginger Cat In Shadow Garden",
+      "slug": "ginger-cat-in-shadow-garden-1785039898397",
+      "shortDescription": "Ginger cat sitting in a shaded garden scene with rich green foliage.",
+      "fullDescription": "Ginger cat sitting in a shaded garden scene with rich green foliage. Curated for commercial websites, editorial layouts, social campaigns, brand presentations, and digital creative projects.",
+      "altText": "Ginger Cat In Shadow Garden stock image by Image Copyright Hub",
+      "pageTitle": "Ginger Cat In Shadow Garden | Royalty-free stock image",
+      "metaDescription": "Download ginger cat in shadow garden as a royalty-free stock image from Image Copyright Hub.",
+      "canonicalUrl": null,
+      "originalFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dVHsfIYFyrnLQvbKhSBugeWPCmiF8JdwDVkMO",
+      "previewFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dVHsfIYFyrnLQvbKhSBugeWPCmiF8JdwDVkMO",
+      "thumbnailUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dVHsfIYFyrnLQvbKhSBugeWPCmiF8JdwDVkMO",
+      "watermarkFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dVHsfIYFyrnLQvbKhSBugeWPCmiF8JdwDVkMO",
+      "fileName": "1785039895445-dsc-1309.webp",
+      "fileExtension": "webp",
+      "mimeType": "image/webp",
+      "fileSize": 547790,
+      "width": 4000,
+      "height": 6000,
+      "orientation": "Portrait",
+      "originalSourceFile": "DSC_1309.JPG",
+      "primaryColor": null,
+      "categoryId": "animals",
+      "category": {
+        "id": "animals",
+        "name": "Animals",
+        "slug": "animals",
+        "description": "Animals stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 9,
+        "createdAt": "2026-07-26T04:24:45.545Z",
+        "updatedAt": "2026-07-26T04:24:45.545Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null,
+        "isActive": true,
+        "lastLoginAt": "2026-07-26T04:02:55.654Z",
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-26T04:02:55.654Z"
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "Image Copyright Hub",
+      "copyrightNotice": "© 2026 Image Copyright Hub. All rights reserved.",
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "PUBLISHED",
+      "featured": false,
+      "publishedAt": "2026-07-26T04:24:58.397Z",
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "ginger cat",
+          "slug": "ginger-cat"
+        },
+        {
+          "name": "cat",
+          "slug": "cat"
+        },
+        {
+          "name": "pet",
+          "slug": "pet"
+        },
+        {
+          "name": "garden",
+          "slug": "garden"
+        },
+        {
+          "name": "animal",
+          "slug": "animal"
+        },
+        {
+          "name": "shade",
+          "slug": "shade"
+        }
+      ],
+      "createdAt": "2026-07-26T04:24:58.397Z",
+      "updatedAt": "2026-07-26T04:24:58.397Z"
+    },
+    {
+      "id": "img-1785039894421-dsc-1299",
+      "title": "Cat Walking Garden Path",
+      "slug": "cat-walking-garden-path-1785039894421",
+      "shortDescription": "A calm cat walking along a garden path surrounded by greenery.",
+      "fullDescription": "A calm cat walking along a garden path surrounded by greenery. Curated for commercial websites, editorial layouts, social campaigns, brand presentations, and digital creative projects.",
+      "altText": "Cat Walking Garden Path stock image by Image Copyright Hub",
+      "pageTitle": "Cat Walking Garden Path | Royalty-free stock image",
+      "metaDescription": "Download cat walking garden path as a royalty-free stock image from Image Copyright Hub.",
+      "canonicalUrl": null,
+      "originalFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d5XtUY6Acto7YXnbNkgCj6P8FORrSMqKIuhH3",
+      "previewFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d5XtUY6Acto7YXnbNkgCj6P8FORrSMqKIuhH3",
+      "thumbnailUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d5XtUY6Acto7YXnbNkgCj6P8FORrSMqKIuhH3",
+      "watermarkFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d5XtUY6Acto7YXnbNkgCj6P8FORrSMqKIuhH3",
+      "fileName": "1785039886859-dsc-1299.webp",
+      "fileExtension": "webp",
+      "mimeType": "image/webp",
+      "fileSize": 1562388,
+      "width": 4000,
+      "height": 6000,
+      "orientation": "Portrait",
+      "originalSourceFile": "DSC_1299.JPG",
+      "primaryColor": null,
+      "categoryId": "animals",
+      "category": {
+        "id": "animals",
+        "name": "Animals",
+        "slug": "animals",
+        "description": "Animals stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 9,
+        "createdAt": "2026-07-26T04:24:45.545Z",
+        "updatedAt": "2026-07-26T04:24:45.545Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null,
+        "isActive": true,
+        "lastLoginAt": "2026-07-26T04:02:55.654Z",
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-26T04:02:55.654Z"
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "Image Copyright Hub",
+      "copyrightNotice": "© 2026 Image Copyright Hub. All rights reserved.",
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "PUBLISHED",
+      "featured": false,
+      "publishedAt": "2026-07-26T04:24:54.421Z",
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "cat",
+          "slug": "cat"
+        },
+        {
+          "name": "garden",
+          "slug": "garden"
+        },
+        {
+          "name": "path",
+          "slug": "path"
+        },
+        {
+          "name": "pet",
+          "slug": "pet"
+        },
+        {
+          "name": "animal",
+          "slug": "animal"
+        },
+        {
+          "name": "outdoor",
+          "slug": "outdoor"
+        }
+      ],
+      "createdAt": "2026-07-26T04:24:54.421Z",
+      "updatedAt": "2026-07-26T04:24:54.421Z"
+    },
+    {
+      "id": "img-1785039885493-dsc-1270",
+      "title": "Purple Garden Flowers",
+      "slug": "purple-garden-flowers-1785039885493",
+      "shortDescription": "Close-up garden flowers with soft purple tones for natural lifestyle visuals.",
+      "fullDescription": "Close-up garden flowers with soft purple tones for natural lifestyle visuals. Curated for commercial websites, editorial layouts, social campaigns, brand presentations, and digital creative projects.",
+      "altText": "Purple Garden Flowers stock image by Image Copyright Hub",
+      "pageTitle": "Purple Garden Flowers | Royalty-free stock image",
+      "metaDescription": "Download purple garden flowers as a royalty-free stock image from Image Copyright Hub.",
+      "canonicalUrl": null,
+      "originalFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dgq5CF2hTztHrRvLBsW9KQqdwIuJckDlUe3gn",
+      "previewFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dgq5CF2hTztHrRvLBsW9KQqdwIuJckDlUe3gn",
+      "thumbnailUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dgq5CF2hTztHrRvLBsW9KQqdwIuJckDlUe3gn",
+      "watermarkFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dgq5CF2hTztHrRvLBsW9KQqdwIuJckDlUe3gn",
+      "fileName": "1785039882474-dsc-1270.webp",
+      "fileExtension": "webp",
+      "mimeType": "image/webp",
+      "fileSize": 792946,
+      "width": 6000,
+      "height": 4000,
+      "orientation": "Landscape",
+      "originalSourceFile": "DSC_1270.JPG",
+      "primaryColor": null,
+      "categoryId": "nature",
+      "category": {
+        "id": "nature",
+        "name": "Nature",
+        "slug": "nature",
+        "description": "Nature stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 1,
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-25T15:42:50.918Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null,
+        "isActive": true,
+        "lastLoginAt": "2026-07-26T04:02:55.654Z",
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-26T04:02:55.654Z"
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "Image Copyright Hub",
+      "copyrightNotice": "© 2026 Image Copyright Hub. All rights reserved.",
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "PUBLISHED",
+      "featured": false,
+      "publishedAt": "2026-07-26T04:24:45.493Z",
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "flowers",
+          "slug": "flowers"
+        },
+        {
+          "name": "garden",
+          "slug": "garden"
+        },
+        {
+          "name": "purple",
+          "slug": "purple"
+        },
+        {
+          "name": "nature",
+          "slug": "nature"
+        },
+        {
+          "name": "botanical",
+          "slug": "botanical"
+        },
+        {
+          "name": "floral",
+          "slug": "floral"
+        }
+      ],
+      "createdAt": "2026-07-26T04:24:45.493Z",
+      "updatedAt": "2026-07-26T04:24:45.493Z"
+    },
+    {
+      "id": "img-1785039881405-dsc-1249",
+      "title": "Misty Mountain Valley View",
+      "slug": "misty-mountain-valley-view-1785039881405",
+      "shortDescription": "Atmospheric mountain valley view with misty layers and a quiet scenic mood.",
+      "fullDescription": "Atmospheric mountain valley view with misty layers and a quiet scenic mood. Curated for commercial websites, editorial layouts, social campaigns, brand presentations, and digital creative projects.",
+      "altText": "Misty Mountain Valley View stock image by Image Copyright Hub",
+      "pageTitle": "Misty Mountain Valley View | Royalty-free stock image",
+      "metaDescription": "Download misty mountain valley view as a royalty-free stock image from Image Copyright Hub.",
+      "canonicalUrl": null,
+      "originalFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dTqgNcZMPVxuQyaSLjA7st8kPIqo5YWpHOlCr",
+      "previewFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dTqgNcZMPVxuQyaSLjA7st8kPIqo5YWpHOlCr",
+      "thumbnailUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dTqgNcZMPVxuQyaSLjA7st8kPIqo5YWpHOlCr",
+      "watermarkFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dTqgNcZMPVxuQyaSLjA7st8kPIqo5YWpHOlCr",
+      "fileName": "1785039878531-dsc-1249.webp",
+      "fileExtension": "webp",
+      "mimeType": "image/webp",
+      "fileSize": 639174,
+      "width": 6000,
+      "height": 4000,
+      "orientation": "Landscape",
+      "originalSourceFile": "DSC_1249.JPG",
+      "primaryColor": null,
+      "categoryId": "travel",
+      "category": {
+        "id": "travel",
+        "name": "Travel",
+        "slug": "travel",
+        "description": "Travel stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 5,
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-25T15:42:50.918Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null,
+        "isActive": true,
+        "lastLoginAt": "2026-07-26T04:02:55.654Z",
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-26T04:02:55.654Z"
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "Image Copyright Hub",
+      "copyrightNotice": "© 2026 Image Copyright Hub. All rights reserved.",
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "PUBLISHED",
+      "featured": false,
+      "publishedAt": "2026-07-26T04:24:41.405Z",
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "mountain",
+          "slug": "mountain"
+        },
+        {
+          "name": "mist",
+          "slug": "mist"
+        },
+        {
+          "name": "valley",
+          "slug": "valley"
+        },
+        {
+          "name": "travel",
+          "slug": "travel"
+        },
+        {
+          "name": "landscape",
+          "slug": "landscape"
+        },
+        {
+          "name": "scenic",
+          "slug": "scenic"
+        }
+      ],
+      "createdAt": "2026-07-26T04:24:41.405Z",
+      "updatedAt": "2026-07-26T04:24:41.405Z"
+    },
+    {
+      "id": "img-1785038333388",
+      "title": "Con mèo",
+      "slug": "con-meo-1785038333389",
+      "shortDescription": "Con Mèo is a high-quality stock image ready for websites, campaigns, social media, and brand content.",
+      "fullDescription": "Con Mèo is a polished visual asset designed for modern creative projects. Use it for landing pages, advertisements, editorial layouts, presentations, social content, and digital campaigns that need clean licensed imagery.",
+      "altText": "Con Mèo stock image for commercial website and marketing use",
+      "pageTitle": "Con Mèo | Royalty-free stock image",
+      "metaDescription": "Download con mèo as a royalty-free stock image for websites, social media, presentations, campaigns, and commercial creative projects.",
+      "canonicalUrl": null,
+      "originalFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d2KU1bNuPQfXtk6rb1FOjGy97BDmZoLnsgc23",
+      "previewFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d2KU1bNuPQfXtk6rb1FOjGy97BDmZoLnsgc23",
+      "thumbnailUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d2KU1bNuPQfXtk6rb1FOjGy97BDmZoLnsgc23",
+      "watermarkFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d2KU1bNuPQfXtk6rb1FOjGy97BDmZoLnsgc23",
+      "fileName": "1785038328498-dsc-2331.webp",
+      "fileExtension": "webp",
+      "mimeType": "image/webp",
+      "fileSize": 587668,
+      "width": null,
+      "height": null,
+      "orientation": null,
+      "primaryColor": null,
+      "categoryId": "business",
+      "category": {
+        "id": "business",
+        "name": "Business",
+        "slug": "business",
+        "description": "Business stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 2,
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-25T15:42:50.918Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "Image Copyright Hub",
+      "copyrightNotice": "© 2026 Image Copyright Hub. All rights reserved.",
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "PUBLISHED",
+      "featured": false,
+      "publishedAt": null,
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "con",
+          "slug": "con"
+        },
+        {
+          "name": "stock photo",
+          "slug": "stock-photo"
+        },
+        {
+          "name": "commercial license",
+          "slug": "commercial-license"
+        },
+        {
+          "name": "website image",
+          "slug": "website-image"
+        },
+        {
+          "name": "marketing asset",
+          "slug": "marketing-asset"
+        },
+        {
+          "name": "digital content",
+          "slug": "digital-content"
+        }
+      ],
+      "createdAt": "2026-07-26T03:58:53.389Z",
+      "updatedAt": "2026-07-26T03:58:53.389Z"
+    },
+    {
+      "id": "img-1785036885602",
+      "title": "OpenAI Codex",
+      "slug": "openai-codex-1785036885602",
+      "shortDescription": "OpenAI Codex",
+      "fullDescription": null,
+      "altText": "OpenAI Codex",
+      "pageTitle": "OpenAI Codex",
+      "metaDescription": "OpenAI Codex",
+      "canonicalUrl": null,
+      "originalFileUrl": "http://localhost:4000/uploads/1785036885567-dsc-1231.jpg",
+      "previewFileUrl": "http://localhost:4000/uploads/1785036885567-dsc-1231.jpg",
+      "thumbnailUrl": "http://localhost:4000/uploads/1785036885567-dsc-1231.jpg",
+      "watermarkFileUrl": "http://localhost:4000/uploads/1785036885567-dsc-1231.jpg",
+      "fileName": "DSC_1231.JPG",
+      "fileExtension": "jpg",
+      "mimeType": "image/jpeg",
+      "fileSize": 2900775,
+      "width": null,
+      "height": null,
+      "orientation": "Landscape",
+      "primaryColor": null,
+      "categoryId": "business",
+      "category": {
+        "id": "business",
+        "name": "Business",
+        "slug": "business",
+        "description": "Business stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 2,
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-25T15:42:50.918Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "Pham Tien Dat",
+      "copyrightNotice": null,
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "PUBLISHED",
+      "featured": false,
+      "publishedAt": "2002-02-12T12:02",
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "OpenAI Codex",
+          "slug": "openai-codex"
+        },
+        {
+          "name": "Design",
+          "slug": "design"
+        },
+        {
+          "name": "Graphics",
+          "slug": "graphics"
+        }
+      ],
+      "createdAt": "2026-07-26T03:34:45.602Z",
+      "updatedAt": "2026-07-26T03:34:45.602Z"
+    },
+    {
+      "id": "img-1785034122515",
+      "title": "dasdas",
+      "slug": "dasdas-1785034122515",
+      "shortDescription": "dasdasdas",
+      "fullDescription": null,
+      "altText": "adsdasdasdsa",
+      "pageTitle": "dasdas",
+      "metaDescription": "dasdasdas",
+      "canonicalUrl": null,
+      "originalFileUrl": "http://localhost:4000/uploads/1785034122479-dsc-1231.jpg",
+      "previewFileUrl": "http://localhost:4000/uploads/1785034122479-dsc-1231.jpg",
+      "thumbnailUrl": "http://localhost:4000/uploads/1785034122479-dsc-1231.jpg",
+      "watermarkFileUrl": "http://localhost:4000/uploads/1785034122479-dsc-1231.jpg",
+      "fileName": "DSC_1231.JPG",
+      "fileExtension": "jpg",
+      "mimeType": "image/jpeg",
+      "fileSize": 2900775,
+      "width": null,
+      "height": null,
+      "orientation": "Landscape",
+      "primaryColor": null,
+      "categoryId": "business",
+      "category": {
+        "id": "business",
+        "name": "Business",
+        "slug": "business",
+        "description": "Business stock image collection",
+        "thumbnailUrl": null,
+        "isActive": true,
+        "sortOrder": 2,
+        "createdAt": "2026-07-25T15:42:50.918Z",
+        "updatedAt": "2026-07-25T15:42:50.918Z"
+      },
+      "contributorId": null,
+      "uploadedByAdminId": "demo-admin",
+      "uploadedByAdmin": {
+        "id": "demo-admin",
+        "fullName": "Demo Admin",
+        "email": "admin@imagecopyrighthub.test",
+        "role": "SUPER_ADMIN",
+        "avatarUrl": null
+      },
+      "standardLicensePrice": 19,
+      "extendedLicensePrice": 79,
+      "currency": "USD",
+      "copyrightOwner": "dasdasdas",
+      "copyrightNotice": null,
+      "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+      "trademarkName": null,
+      "trademarkDisclaimer": null,
+      "commercialUseAllowed": true,
+      "editorialUseOnly": false,
+      "modelReleaseAvailable": false,
+      "propertyReleaseAvailable": false,
+      "status": "DRAFT",
+      "featured": false,
+      "publishedAt": null,
+      "scheduledAt": null,
+      "deletedAt": null,
+      "keywords": [
+        {
+          "name": "ads",
+          "slug": "ads"
+        },
+        {
+          "name": "asdasd",
+          "slug": "asdasd"
+        },
+        {
+          "name": "adsdas",
+          "slug": "adsdas"
+        }
+      ],
+      "createdAt": "2026-07-26T02:48:42.515Z",
+      "updatedAt": "2026-07-26T02:48:42.515Z"
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "audit-1785135509346",
+      "adminId": "demo-admin",
+      "action": "ADMIN_LOGIN_LOCAL_JSON",
+      "entityType": "Admin",
+      "entityId": "demo-admin",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-07-27T06:58:29.346Z"
+    },
+    {
+      "id": "audit-1785134841875",
+      "adminId": "demo-admin",
+      "action": "ADMIN_LOGIN_LOCAL_JSON",
+      "entityType": "Admin",
+      "entityId": "demo-admin",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-07-27T06:47:21.875Z"
+    },
+    {
+      "id": "audit-1785134793001",
+      "adminId": "demo-admin",
+      "action": "ADMIN_LOGIN_LOCAL_JSON",
+      "entityType": "Admin",
+      "entityId": "demo-admin",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-07-27T06:46:33.001Z"
+    },
+    {
+      "id": "audit-1785056263235",
+      "adminId": "demo-admin",
+      "action": "ADMIN_LOGIN_LOCAL_JSON",
+      "entityType": "Admin",
+      "entityId": "demo-admin",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-07-26T08:57:43.235Z"
+    },
+    {
+      "id": "audit-1785039955315-dsc-2325",
+      "adminId": "demo-admin",
+      "action": "BULK_IMAGE_IMPORT_UPLOADTHING",
+      "entityType": "Image",
+      "entityId": "img-1785039955315-dsc-2325",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785039955315-dsc-2325",
+        "title": "Gray Cat Walking Outdoors",
+        "originalSourceFile": "DSC_2325.JPG",
+        "url": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d9nKBDWUwv70dzxqOKM9knY2V1QaXb8ZcGSfR"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T04:25:55.315Z"
+    },
+    {
+      "id": "audit-1785039952366-dsc-2296",
+      "adminId": "demo-admin",
+      "action": "BULK_IMAGE_IMPORT_UPLOADTHING",
+      "entityType": "Image",
+      "entityId": "img-1785039952366-dsc-2296",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785039952366-dsc-2296",
+        "title": "Window Framed Forest Portrait",
+        "originalSourceFile": "DSC_2296.JPG",
+        "url": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dTQSMX2PVxuQyaSLjA7st8kPIqo5YWpHOlCrZ"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T04:25:52.365Z"
+    },
+    {
+      "id": "audit-1785039950018-dsc-2263",
+      "adminId": "demo-admin",
+      "action": "BULK_IMAGE_IMPORT_UPLOADTHING",
+      "entityType": "Image",
+      "entityId": "img-1785039950018-dsc-2263",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785039950018-dsc-2263",
+        "title": "Relaxed Ginger Cat Indoors",
+        "originalSourceFile": "DSC_2263.JPG",
+        "url": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dJT0D0bQn8k3yuvqifr9CLwhM2HWoTXGROm6g"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T04:25:50.018Z"
+    },
+    {
+      "id": "audit-1785039947365-dsc-2249",
+      "adminId": "demo-admin",
+      "action": "BULK_IMAGE_IMPORT_UPLOADTHING",
+      "entityType": "Image",
+      "entityId": "img-1785039947365-dsc-2249",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785039947365-dsc-2249",
+        "title": "Vietnamese Noodle Soup Table",
+        "originalSourceFile": "DSC_2249.JPG",
+        "url": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dyleIutGrMq84Tt9YvwQZoduNbx1GAHpXKhLj"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T04:25:47.365Z"
+    },
+    {
+      "id": "audit-1785039939994-dsc-2225",
+      "adminId": "demo-admin",
+      "action": "BULK_IMAGE_IMPORT_UPLOADTHING",
+      "entityType": "Image",
+      "entityId": "img-1785039939994-dsc-2225",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785039939994-dsc-2225",
+        "title": "Forest Trail Height Sign",
+        "originalSourceFile": "DSC_2225.JPG",
+        "url": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dtK7kaO8jfy8BRwpGYEMqCdiT3ke2PuNghxJr"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T04:25:39.994Z"
+    },
+    {
+      "id": "audit-1785039930342-dsc-2217",
+      "adminId": "demo-admin",
+      "action": "BULK_IMAGE_IMPORT_UPLOADTHING",
+      "entityType": "Image",
+      "entityId": "img-1785039930342-dsc-2217",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785039930342-dsc-2217",
+        "title": "Small Bird Nest In Tree",
+        "originalSourceFile": "DSC_2217.JPG",
+        "url": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dWO3vrO9NW2p8i3Yr5gmDO9Te6GylZtxunFqE"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T04:25:30.342Z"
+    },
+    {
+      "id": "audit-1785039925105-dsc-2114",
+      "adminId": "demo-admin",
+      "action": "BULK_IMAGE_IMPORT_UPLOADTHING",
+      "entityType": "Image",
+      "entityId": "img-1785039925105-dsc-2114",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785039925105-dsc-2114",
+        "title": "Cafe Table Drinks",
+        "originalSourceFile": "DSC_2114.JPG",
+        "url": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d1nl0lXf7Ayk2olQmJFHu84IC60d5Dj9TXacv"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T04:25:25.105Z"
+    },
+    {
+      "id": "audit-1785039920491-dsc-2072",
+      "adminId": "demo-admin",
+      "action": "BULK_IMAGE_IMPORT_UPLOADTHING",
+      "entityType": "Image",
+      "entityId": "img-1785039920491-dsc-2072",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785039920491-dsc-2072",
+        "title": "Casual Cafe Portrait",
+        "originalSourceFile": "DSC_2072.JPG",
+        "url": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dSIRrzMAVEvKO6ThiMngl2dxV3bJFer5Rjupo"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T04:25:20.491Z"
+    },
+    {
+      "id": "audit-1785039909370-dsc-2028",
+      "adminId": "demo-admin",
+      "action": "BULK_IMAGE_IMPORT_UPLOADTHING",
+      "entityType": "Image",
+      "entityId": "img-1785039909370-dsc-2028",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785039909370-dsc-2028",
+        "title": "Quiet Workspace Interior",
+        "originalSourceFile": "DSC_2028.JPG",
+        "url": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dtGUnin8jfy8BRwpGYEMqCdiT3ke2PuNghxJr"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T04:25:09.370Z"
+    },
+    {
+      "id": "audit-1785039905444-dsc-1328",
+      "adminId": "demo-admin",
+      "action": "BULK_IMAGE_IMPORT_UPLOADTHING",
+      "entityType": "Image",
+      "entityId": "img-1785039905444-dsc-1328",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785039905444-dsc-1328",
+        "title": "White Cat On Garden Railing",
+        "originalSourceFile": "DSC_1328.JPG",
+        "url": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70du3neUW0TcBZ3KCzv6OUFopPrtXgY4ybQHs8J"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T04:25:05.444Z"
+    },
+    {
+      "id": "audit-1785039902810-dsc-1319",
+      "adminId": "demo-admin",
+      "action": "BULK_IMAGE_IMPORT_UPLOADTHING",
+      "entityType": "Image",
+      "entityId": "img-1785039902810-dsc-1319",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785039902810-dsc-1319",
+        "title": "Curly Dog On Wooden Porch",
+        "originalSourceFile": "DSC_1319.JPG",
+        "url": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70deLSEd4ZQ7VfK1z83G0FpmAoyXihjsZ49B5u6"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T04:25:02.810Z"
+    },
+    {
+      "id": "audit-1785039898397-dsc-1309",
+      "adminId": "demo-admin",
+      "action": "BULK_IMAGE_IMPORT_UPLOADTHING",
+      "entityType": "Image",
+      "entityId": "img-1785039898397-dsc-1309",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785039898397-dsc-1309",
+        "title": "Ginger Cat In Shadow Garden",
+        "originalSourceFile": "DSC_1309.JPG",
+        "url": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dVHsfIYFyrnLQvbKhSBugeWPCmiF8JdwDVkMO"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T04:24:58.397Z"
+    },
+    {
+      "id": "audit-1785039894421-dsc-1299",
+      "adminId": "demo-admin",
+      "action": "BULK_IMAGE_IMPORT_UPLOADTHING",
+      "entityType": "Image",
+      "entityId": "img-1785039894421-dsc-1299",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785039894421-dsc-1299",
+        "title": "Cat Walking Garden Path",
+        "originalSourceFile": "DSC_1299.JPG",
+        "url": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d5XtUY6Acto7YXnbNkgCj6P8FORrSMqKIuhH3"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T04:24:54.421Z"
+    },
+    {
+      "id": "audit-1785039885493-dsc-1270",
+      "adminId": "demo-admin",
+      "action": "BULK_IMAGE_IMPORT_UPLOADTHING",
+      "entityType": "Image",
+      "entityId": "img-1785039885493-dsc-1270",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785039885493-dsc-1270",
+        "title": "Purple Garden Flowers",
+        "originalSourceFile": "DSC_1270.JPG",
+        "url": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dgq5CF2hTztHrRvLBsW9KQqdwIuJckDlUe3gn"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T04:24:45.493Z"
+    },
+    {
+      "id": "audit-1785039881405-dsc-1249",
+      "adminId": "demo-admin",
+      "action": "BULK_IMAGE_IMPORT_UPLOADTHING",
+      "entityType": "Image",
+      "entityId": "img-1785039881405-dsc-1249",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785039881405-dsc-1249",
+        "title": "Misty Mountain Valley View",
+        "originalSourceFile": "DSC_1249.JPG",
+        "url": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70dTqgNcZMPVxuQyaSLjA7st8kPIqo5YWpHOlCr"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T04:24:41.405Z"
+    },
+    {
+      "id": "audit-1785038575656",
+      "adminId": "demo-admin",
+      "action": "ADMIN_LOGIN_LOCAL_JSON",
+      "entityType": "Admin",
+      "entityId": "demo-admin",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-07-26T04:02:55.656Z"
+    },
+    {
+      "id": "audit-1785038333389",
+      "adminId": "demo-admin",
+      "action": "IMAGE_CREATION_LOCAL_JSON",
+      "entityType": "Image",
+      "entityId": "img-1785038333388",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785038333388",
+        "title": "Con mèo",
+        "slug": "con-meo-1785038333389",
+        "shortDescription": "Con Mèo is a high-quality stock image ready for websites, campaigns, social media, and brand content.",
+        "fullDescription": "Con Mèo is a polished visual asset designed for modern creative projects. Use it for landing pages, advertisements, editorial layouts, presentations, social content, and digital campaigns that need clean licensed imagery.",
+        "altText": "Con Mèo stock image for commercial website and marketing use",
+        "pageTitle": "Con Mèo | Royalty-free stock image",
+        "metaDescription": "Download con mèo as a royalty-free stock image for websites, social media, presentations, campaigns, and commercial creative projects.",
+        "canonicalUrl": null,
+        "originalFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d2KU1bNuPQfXtk6rb1FOjGy97BDmZoLnsgc23",
+        "previewFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d2KU1bNuPQfXtk6rb1FOjGy97BDmZoLnsgc23",
+        "thumbnailUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d2KU1bNuPQfXtk6rb1FOjGy97BDmZoLnsgc23",
+        "watermarkFileUrl": "https://rcwmxq1zyc.ufs.sh/f/9KnpxxUwv70d2KU1bNuPQfXtk6rb1FOjGy97BDmZoLnsgc23",
+        "fileName": "1785038328498-dsc-2331.webp",
+        "fileExtension": "webp",
+        "mimeType": "image/webp",
+        "fileSize": 587668,
+        "width": null,
+        "height": null,
+        "orientation": null,
+        "primaryColor": null,
+        "categoryId": "business",
+        "category": {
+          "id": "business",
+          "name": "Business",
+          "slug": "business",
+          "description": "Business stock image collection",
+          "thumbnailUrl": null,
+          "isActive": true,
+          "sortOrder": 2,
+          "createdAt": "2026-07-25T15:42:50.918Z",
+          "updatedAt": "2026-07-25T15:42:50.918Z"
+        },
+        "contributorId": null,
+        "uploadedByAdminId": "demo-admin",
+        "uploadedByAdmin": {
+          "id": "demo-admin",
+          "fullName": "Demo Admin",
+          "email": "admin@imagecopyrighthub.test",
+          "role": "SUPER_ADMIN",
+          "avatarUrl": null
+        },
+        "standardLicensePrice": 19,
+        "extendedLicensePrice": 79,
+        "currency": "USD",
+        "copyrightOwner": "Image Copyright Hub",
+        "copyrightNotice": "© 2026 Image Copyright Hub. All rights reserved.",
+        "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+        "trademarkName": null,
+        "trademarkDisclaimer": null,
+        "commercialUseAllowed": true,
+        "editorialUseOnly": false,
+        "modelReleaseAvailable": false,
+        "propertyReleaseAvailable": false,
+        "status": "PUBLISHED",
+        "featured": false,
+        "publishedAt": null,
+        "scheduledAt": null,
+        "deletedAt": null,
+        "keywords": [
+          {
+            "name": "con",
+            "slug": "con"
+          },
+          {
+            "name": "stock photo",
+            "slug": "stock-photo"
+          },
+          {
+            "name": "commercial license",
+            "slug": "commercial-license"
+          },
+          {
+            "name": "website image",
+            "slug": "website-image"
+          },
+          {
+            "name": "marketing asset",
+            "slug": "marketing-asset"
+          },
+          {
+            "name": "digital content",
+            "slug": "digital-content"
+          }
+        ],
+        "createdAt": "2026-07-26T03:58:53.389Z",
+        "updatedAt": "2026-07-26T03:58:53.389Z"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T03:58:53.389Z"
+    },
+    {
+      "id": "audit-1785038086811",
+      "adminId": "demo-admin",
+      "action": "ADMIN_LOGIN_LOCAL_JSON",
+      "entityType": "Admin",
+      "entityId": "demo-admin",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-07-26T03:54:46.811Z"
+    },
+    {
+      "id": "audit-1785037713184",
+      "adminId": "demo-admin",
+      "action": "ADMIN_LOGIN_LOCAL_JSON",
+      "entityType": "Admin",
+      "entityId": "demo-admin",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-07-26T03:48:33.184Z"
+    },
+    {
+      "id": "audit-1785037700441",
+      "adminId": "demo-admin",
+      "action": "ADMIN_LOGIN_LOCAL_JSON",
+      "entityType": "Admin",
+      "entityId": "demo-admin",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-07-26T03:48:20.441Z"
+    },
+    {
+      "id": "audit-1785036885602",
+      "adminId": "demo-admin",
+      "action": "IMAGE_CREATION_LOCAL_JSON",
+      "entityType": "Image",
+      "entityId": "img-1785036885602",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785036885602",
+        "title": "OpenAI Codex",
+        "slug": "openai-codex-1785036885602",
+        "shortDescription": "OpenAI Codex",
+        "fullDescription": null,
+        "altText": "OpenAI Codex",
+        "pageTitle": "OpenAI Codex",
+        "metaDescription": "OpenAI Codex",
+        "canonicalUrl": null,
+        "originalFileUrl": "http://localhost:4000/uploads/1785036885567-dsc-1231.jpg",
+        "previewFileUrl": "http://localhost:4000/uploads/1785036885567-dsc-1231.jpg",
+        "thumbnailUrl": "http://localhost:4000/uploads/1785036885567-dsc-1231.jpg",
+        "watermarkFileUrl": "http://localhost:4000/uploads/1785036885567-dsc-1231.jpg",
+        "fileName": "DSC_1231.JPG",
+        "fileExtension": "jpg",
+        "mimeType": "image/jpeg",
+        "fileSize": 2900775,
+        "width": null,
+        "height": null,
+        "orientation": "Landscape",
+        "primaryColor": null,
+        "categoryId": "business",
+        "category": {
+          "id": "business",
+          "name": "Business",
+          "slug": "business",
+          "description": "Business stock image collection",
+          "thumbnailUrl": null,
+          "isActive": true,
+          "sortOrder": 2,
+          "createdAt": "2026-07-25T15:42:50.918Z",
+          "updatedAt": "2026-07-25T15:42:50.918Z"
+        },
+        "contributorId": null,
+        "uploadedByAdminId": "demo-admin",
+        "uploadedByAdmin": {
+          "id": "demo-admin",
+          "fullName": "Demo Admin",
+          "email": "admin@imagecopyrighthub.test",
+          "role": "SUPER_ADMIN",
+          "avatarUrl": null
+        },
+        "standardLicensePrice": 19,
+        "extendedLicensePrice": 79,
+        "currency": "USD",
+        "copyrightOwner": "Pham Tien Dat",
+        "copyrightNotice": null,
+        "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+        "trademarkName": null,
+        "trademarkDisclaimer": null,
+        "commercialUseAllowed": true,
+        "editorialUseOnly": false,
+        "modelReleaseAvailable": false,
+        "propertyReleaseAvailable": false,
+        "status": "PUBLISHED",
+        "featured": false,
+        "publishedAt": "2002-02-12T12:02",
+        "scheduledAt": null,
+        "deletedAt": null,
+        "keywords": [
+          {
+            "name": "OpenAI Codex",
+            "slug": "openai-codex"
+          },
+          {
+            "name": "Design",
+            "slug": "design"
+          },
+          {
+            "name": "Graphics",
+            "slug": "graphics"
+          }
+        ],
+        "createdAt": "2026-07-26T03:34:45.602Z",
+        "updatedAt": "2026-07-26T03:34:45.602Z"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T03:34:45.602Z"
+    },
+    {
+      "id": "audit-1785036835429",
+      "adminId": "demo-admin",
+      "action": "ADMIN_LOGIN_LOCAL_JSON",
+      "entityType": "Admin",
+      "entityId": "demo-admin",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-07-26T03:33:55.429Z"
+    },
+    {
+      "id": "audit-1785036611791",
+      "adminId": "demo-admin",
+      "action": "ADMIN_LOGIN_LOCAL_JSON",
+      "entityType": "Admin",
+      "entityId": "demo-admin",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-07-26T03:30:11.791Z"
+    },
+    {
+      "id": "audit-1785036301312",
+      "adminId": "demo-admin",
+      "action": "ADMIN_LOGIN_LOCAL_JSON",
+      "entityType": "Admin",
+      "entityId": "demo-admin",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-07-26T03:25:01.312Z"
+    },
+    {
+      "id": "audit-1785034122515",
+      "adminId": "demo-admin",
+      "action": "IMAGE_CREATION_LOCAL_JSON",
+      "entityType": "Image",
+      "entityId": "img-1785034122515",
+      "previousData": null,
+      "newData": {
+        "id": "img-1785034122515",
+        "title": "dasdas",
+        "slug": "dasdas-1785034122515",
+        "shortDescription": "dasdasdas",
+        "fullDescription": null,
+        "altText": "adsdasdasdsa",
+        "pageTitle": "dasdas",
+        "metaDescription": "dasdasdas",
+        "canonicalUrl": null,
+        "originalFileUrl": "http://localhost:4000/uploads/1785034122479-dsc-1231.jpg",
+        "previewFileUrl": "http://localhost:4000/uploads/1785034122479-dsc-1231.jpg",
+        "thumbnailUrl": "http://localhost:4000/uploads/1785034122479-dsc-1231.jpg",
+        "watermarkFileUrl": "http://localhost:4000/uploads/1785034122479-dsc-1231.jpg",
+        "fileName": "DSC_1231.JPG",
+        "fileExtension": "jpg",
+        "mimeType": "image/jpeg",
+        "fileSize": 2900775,
+        "width": null,
+        "height": null,
+        "orientation": "Landscape",
+        "primaryColor": null,
+        "categoryId": "business",
+        "category": {
+          "id": "business",
+          "name": "Business",
+          "slug": "business",
+          "description": "Business stock image collection",
+          "thumbnailUrl": null,
+          "isActive": true,
+          "sortOrder": 2,
+          "createdAt": "2026-07-25T15:42:50.918Z",
+          "updatedAt": "2026-07-25T15:42:50.918Z"
+        },
+        "contributorId": null,
+        "uploadedByAdminId": "demo-admin",
+        "uploadedByAdmin": {
+          "id": "demo-admin",
+          "fullName": "Demo Admin",
+          "email": "admin@imagecopyrighthub.test",
+          "role": "SUPER_ADMIN",
+          "avatarUrl": null
+        },
+        "standardLicensePrice": 19,
+        "extendedLicensePrice": 79,
+        "currency": "USD",
+        "copyrightOwner": "dasdasdas",
+        "copyrightNotice": null,
+        "trademarkStatus": "NO_VISIBLE_TRADEMARK",
+        "trademarkName": null,
+        "trademarkDisclaimer": null,
+        "commercialUseAllowed": true,
+        "editorialUseOnly": false,
+        "modelReleaseAvailable": false,
+        "propertyReleaseAvailable": false,
+        "status": "DRAFT",
+        "featured": false,
+        "publishedAt": null,
+        "scheduledAt": null,
+        "deletedAt": null,
+        "keywords": [
+          {
+            "name": "ads",
+            "slug": "ads"
+          },
+          {
+            "name": "asdasd",
+            "slug": "asdasd"
+          },
+          {
+            "name": "adsdas",
+            "slug": "adsdas"
+          }
+        ],
+        "createdAt": "2026-07-26T02:48:42.515Z",
+        "updatedAt": "2026-07-26T02:48:42.515Z"
+      },
+      "ipAddress": null,
+      "createdAt": "2026-07-26T02:48:42.515Z"
+    },
+    {
+      "id": "audit-1785033704131",
+      "adminId": "demo-admin",
+      "action": "ADMIN_LOGIN_LOCAL_JSON",
+      "entityType": "Admin",
+      "entityId": "demo-admin",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-07-26T02:41:44.131Z"
+    },
+    {
+      "id": "audit-1784994207852",
+      "adminId": "demo-admin",
+      "action": "ADMIN_LOGIN_LOCAL_JSON",
+      "entityType": "Admin",
+      "entityId": "demo-admin",
+      "previousData": null,
+      "newData": null,
+      "ipAddress": "::1",
+      "createdAt": "2026-07-25T15:43:27.852Z"
+    }
+  ]
+}

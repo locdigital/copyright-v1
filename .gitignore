@@ -5,4 +5,5 @@ uploads/*
 !uploads/.gitkeep
 storage/*
 !storage/.gitkeep
+!storage/local-db.json
 .DS_Store
