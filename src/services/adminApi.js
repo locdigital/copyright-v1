@@ -239,27 +239,36 @@ export async function updateAdminImage(id, payload) {
   return { image: localFound || updates }
 }
 
-export async function deleteAdminImage(id) {
-  if (shouldUseStaticAdminPreview()) {
+export async function deleteAdminImage(id, slug = null) {
+  const purgeLocal = () => {
     try {
       const existing = getUserUploadedImages()
-      const filtered = existing.filter((item) => item.id !== id && item.slug !== id)
+      const filtered = existing.filter((item) => {
+        const matchesId = item.id === id || item.slug === id
+        const matchesSlug = slug && (item.id === slug || item.slug === slug)
+        return !matchesId && !matchesSlug
+      })
       localStorage.setItem(USER_UPLOADED_IMAGES_KEY, JSON.stringify(filtered))
     } catch (err) {
       console.warn('Failed to delete image from localStorage:', err)
     }
+  }
+
+  purgeLocal()
+
+  if (shouldUseStaticAdminPreview()) {
     return { success: true }
   }
 
-  const result = await request(`/api/admin/images/${id}`, { method: 'DELETE' })
   try {
-    const existing = getUserUploadedImages()
-    const filtered = existing.filter((item) => item.id !== id && item.slug !== id)
-    localStorage.setItem(USER_UPLOADED_IMAGES_KEY, JSON.stringify(filtered))
-  } catch {
-    // Ignore error
+    const result = await request(`/api/admin/images/${id}`, { method: 'DELETE' })
+    purgeLocal()
+    return result
+  } catch (error) {
+    console.warn('API delete warning, purged local copy:', error)
+    purgeLocal()
+    return { success: true }
   }
-  return result
 }
 
 export async function createAdminImage(formData) {

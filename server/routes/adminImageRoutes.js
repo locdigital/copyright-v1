@@ -171,13 +171,25 @@ router.delete('/images/:id', requireAdminRole(['SUPER_ADMIN', 'CONTENT_MANAGER']
       return
     }
 
+    let dbImageId = id
+    try {
+      const found = await prisma.image.findFirst({
+        where: { OR: [{ id }, { slug: id }] },
+      })
+      if (found) dbImageId = found.id
+    } catch (findErr) {
+      console.warn('Prisma findFirst error on delete:', findErr.message)
+    }
+
     try {
       await prisma.image.update({
-        where: { id },
+        where: { id: dbImageId },
         data: { deletedAt: new Date() },
       })
+      await deleteLocalImage(id)
       response.json({ success: true, message: 'Image deleted successfully.' })
-    } catch {
+    } catch (dbErr) {
+      console.warn('Prisma delete failed, using local DB fallback:', dbErr.message)
       await deleteLocalImage(id)
       response.json({ success: true, message: 'Image deleted successfully.' })
     }

@@ -85,8 +85,12 @@ export default function AdminImageListPage() {
     setMessage('')
     setErrorMessage('')
     try {
-      await deleteAdminImage(image.id)
-      setImages((current) => current.filter((item) => item.id !== image.id))
+      await deleteAdminImage(image.id, image.slug)
+      setImages((current) =>
+        current.filter(
+          (item) => item.id !== image.id && item.slug !== image.id && item.id !== image.slug && item.slug !== image.slug
+        )
+      )
       setMessage(`Đã xóa ảnh "${image.title}" thành công.`)
     } catch (error) {
       setErrorMessage(error.message || 'Không thể xóa ảnh.')
