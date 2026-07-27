@@ -1,0 +1,161 @@
+import { Router } from 'express'
+import multer from 'multer'
+import { requireAdmin, requireAdminRole } from '../middleware/auth.js'
+import { prisma } from '../prisma.js'
+import { optimizeAndUploadImage } from '../services/uploadThingStorageProvider.js'
+import { writeAuditLog } from '../services/auditLogService.js'
+import { createLocalImage, getLocalCategories, isLocalJsonDbEnabled, localImageSlugExists } from '../services/localJsonDb.js'
+import { slugify } from '../utils/slugify.js'
+
+const router = Router()
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 150 * 1024 * 1024 },
+  fileFilter: (_request, file, callback) => {
+    if (!file.mimetype?.startsWith('image/')) {
+      callback(new Error('Only image uploads are supported.'))
+      return
+    }
+    callback(null, true)
+  },
+})
+
+function parseKeywords(value) {
+  return String(value || '')
+    .split(',')
+    .map((keyword) => keyword.trim())
+    .filter(Boolean)
+}
+
+function parsePublishedAt(body) {
+  if (body.publishedAt) return new Date(body.publishedAt)
+  if (['PUBLISHED', 'APPROVED'].includes(body.status)) return new Date()
+  return null
+}
+
+function getImageSlug(body, title) {
+  const requestedSlug = slugify(body.slug)
+  const titleSlug = slugify(title)
+  return {
+    isCustomSlug: Boolean(requestedSlug),
+    slug: requestedSlug || `${titleSlug || 'image'}-${Date.now()}`,
+  }
+}
+
+router.use(requireAdmin)
+
+router.get('/categories', async (_request, response, next) => {
+  try {
+    if (isLocalJsonDbEnabled()) {
+      const categories = await getLocalCategories()
+      response.json({ categories })
+      return
+    }
+
+    const categories = await prisma.category.findMany({ where: { isActive: true }, orderBy: [{ sortOrder: 'asc' }, { name: 'asc' }] })
+    response.json({ categories })
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post(
+  '/images',
+  requireAdminRole(['SUPER_ADMIN', 'CONTENT_MANAGER']),
+  upload.single('image'),
+  async (request, response, next) => {
+    try {
+      if (!request.file) return response.status(400).json({ message: 'Image file is required.' })
+
+      const body = request.body
+      const title = String(body.title || '').trim()
+      const altText = String(body.altText || '').trim()
+      const copyrightOwner = String(body.copyrightOwner || '').trim()
+      if (!title || !altText || !copyrightOwner || !body.categoryId) {
+        return response.status(400).json({ message: 'Title, alt text, copyright owner, and category are required.' })
+      }
+
+      const { isCustomSlug, slug } = getImageSlug(body, title)
+      body.slug = slug
+
+      if (isCustomSlug) {
+        if (isLocalJsonDbEnabled()) {
+          if (await localImageSlugExists(slug)) return response.status(409).json({ message: 'Slug này đã tồn tại. Vui lòng chọn slug khác.' })
+        } else {
+          const existingImage = await prisma.image.findUnique({ where: { slug } })
+          if (existingImage) return response.status(409).json({ message: 'Slug này đã tồn tại. Vui lòng chọn slug khác.' })
+        }
+      }
+
+      const storedFile = await optimizeAndUploadImage(request.file)
+
+      if (isLocalJsonDbEnabled()) {
+        const image = await createLocalImage({ body, storedFile, admin: request.admin })
+        response.status(201).json({ image, storage: 'local-json-uploadthing' })
+        return
+      }
+
+      const keywordNames = parseKeywords(body.keywords)
+
+      const image = await prisma.image.create({
+        data: {
+          title,
+          slug,
+          shortDescription: body.shortDescription || null,
+          fullDescription: body.fullDescription || null,
+          altText,
+          pageTitle: body.pageTitle || title,
+          metaDescription: body.metaDescription || body.shortDescription || null,
+          canonicalUrl: body.canonicalUrl || null,
+          ...storedFile,
+          orientation: body.orientation || storedFile.orientation || null,
+          primaryColor: body.primaryColor || null,
+          categoryId: body.categoryId,
+          uploadedByAdminId: request.admin.id,
+          standardLicensePrice: body.standardLicensePrice ? Number(body.standardLicensePrice) : 19,
+          extendedLicensePrice: body.extendedLicensePrice ? Number(body.extendedLicensePrice) : 79,
+          currency: body.currency || 'USD',
+          copyrightOwner,
+          copyrightNotice: body.copyrightNotice || null,
+          trademarkStatus: body.trademarkStatus || 'NO_VISIBLE_TRADEMARK',
+          trademarkName: body.trademarkName || null,
+          trademarkDisclaimer: body.trademarkDisclaimer || null,
+          commercialUseAllowed: body.commercialUseAllowed !== 'false',
+          editorialUseOnly: body.editorialUseOnly === 'true',
+          modelReleaseAvailable: body.modelReleaseAvailable === 'true',
+          propertyReleaseAvailable: body.propertyReleaseAvailable === 'true',
+          status: body.status || 'DRAFT',
+          featured: body.featured === 'true',
+          publishedAt: parsePublishedAt(body),
+          scheduledAt: body.scheduledAt ? new Date(body.scheduledAt) : null,
+          keywords: {
+            create: keywordNames.map((name) => ({
+              keyword: {
+                connectOrCreate: {
+                  where: { slug: slugify(name) },
+                  create: { name, slug: slugify(name) },
+                },
+              },
+            })),
+          },
+        },
+        include: { category: true, keywords: { include: { keyword: true } } },
+      })
+
+      await writeAuditLog({
+        adminId: request.admin.id,
+        action: 'IMAGE_CREATION',
+        entityType: 'Image',
+        entityId: image.id,
+        newData: image,
+        ipAddress: request.ip,
+      })
+
+      response.status(201).json({ image })
+    } catch (error) {
+      next(error)
+    }
+  },
+)
+
+export default router

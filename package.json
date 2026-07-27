@@ -1,0 +1,41 @@
+{
+  "name": "imagecopyrighthub-image-licensing",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:api": "node server/index.js",
+    "dev:full": "concurrently \"pnpm dev:api\" \"pnpm dev\"",
+    "build": "node scripts/export-static-marketplace.mjs && vite build && node scripts/prepare-surge-spa.mjs",
+    "preview": "vite preview",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "db:seed": "node prisma/seed.js"
+  },
+  "dependencies": {
+    "@prisma/client": "6.19.0",
+    "@vitejs/plugin-react": "latest",
+    "bcrypt": "latest",
+    "concurrently": "latest",
+    "cookie-parser": "latest",
+    "cors": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "jsonwebtoken": "latest",
+    "lucide-react": "latest",
+    "multer": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "latest",
+    "sharp": "^0.35.3",
+    "uploadthing": "^7.7.4",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "latest",
+    "prisma": "6.19.0",
+    "tailwindcss": "latest"
+  }
+}
