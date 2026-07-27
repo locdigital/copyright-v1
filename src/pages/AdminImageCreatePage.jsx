@@ -1,6 +1,6 @@
-import { CalendarDays, FileImage, LogOut, Save, ShieldCheck, Sparkles } from 'lucide-react'
+import { CalendarDays, FileImage, Layers, LogOut, Plus, Save, ShieldCheck, Sparkles } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { categories as mockCategories } from '../data/mockData'
 import { createAdminImage, fetchAdminCategories, getStoredAdmin, isStaticAdminMode, logoutAdmin } from '../services/adminApi'
 
@@ -208,19 +208,36 @@ export default function AdminImageCreatePage() {
 
   return (
     <main className="min-h-screen bg-slate-50">
-      <header className="border-b border-slate-200 bg-white">
+      <header className="border-b border-slate-200 bg-white shadow-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3">
-            <span className="grid h-11 w-11 place-items-center rounded-2xl bg-blue-600 text-white"><ShieldCheck size={22} /></span>
-            <div>
-              <p className="text-sm font-semibold text-blue-600">Admin CMS</p>
-              <h1 className="font-black text-slate-950">Image Copyright Hub</h1>
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3">
+              <span className="grid h-11 w-11 place-items-center rounded-2xl bg-blue-600 text-white"><ShieldCheck size={22} /></span>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wider text-blue-600">Admin CMS</p>
+                <h1 className="font-black text-slate-950">Image Copyright Hub</h1>
+              </div>
             </div>
+
+            <nav className="hidden items-center gap-2 sm:flex">
+              <Link to="/admin/images" className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-bold text-slate-600 transition hover:bg-slate-50 hover:text-slate-950">
+                <Layers size={16} /> Danh sách ảnh
+              </Link>
+              <Link to="/admin/images/new" className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-sm font-extrabold text-blue-700 shadow-sm">
+                <Plus size={16} /> Upload ảnh mới
+              </Link>
+            </nav>
           </div>
+
           <div className="flex items-center gap-3">
-            <span className="hidden text-sm text-slate-500 sm:inline">{admin?.fullName} · {admin?.role}</span>
-            <button onClick={handleLogout} className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-bold text-slate-700 hover:bg-slate-50"><LogOut size={17} /> Logout</button>
+            <span className="hidden text-sm font-semibold text-slate-500 sm:inline">{admin?.fullName} · {admin?.role}</span>
+            <button onClick={handleLogout} className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-bold text-slate-700 transition hover:bg-slate-50"><LogOut size={17} /> Logout</button>
           </div>
+        </div>
+
+        <div className="flex border-t border-slate-100 px-4 py-2 sm:hidden">
+          <Link to="/admin/images" className="flex-1 text-center py-2 text-sm font-bold text-slate-500">Danh sách ảnh</Link>
+          <Link to="/admin/images/new" className="flex-1 text-center py-2 text-sm font-bold text-blue-600 border-b-2 border-blue-600">+ Upload mới</Link>
         </div>
       </header>
 

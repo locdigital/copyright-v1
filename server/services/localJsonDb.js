@@ -203,3 +203,48 @@ export async function getLocalImageById(imageId) {
   if (!image) return null
   return image
 }
+
+export async function listAllLocalImagesAdmin({ category, search, status, skip = 0, take = 50 } = {}) {
+  const db = await ensureDb()
+  const normalizedCategory = String(category || '').toLowerCase().trim()
+  const normalizedSearch = String(search || '').toLowerCase().trim()
+  const normalizedStatus = String(status || '').toUpperCase().trim()
+
+  const allImages = db.images
+    .filter((image) => !image.deletedAt)
+    .filter((image) => {
+      const matchesStatus = !normalizedStatus || image.status === normalizedStatus
+      const categorySlug = image.category?.slug || image.categoryId
+      const categoryName = image.category?.name || ''
+      const matchesCategory = !normalizedCategory || [categorySlug, categoryName].some((value) => String(value).toLowerCase() === normalizedCategory)
+      const keywords = Array.isArray(image.keywords) ? image.keywords.map((keyword) => keyword.name || keyword) : []
+      const haystack = [image.title, image.shortDescription, image.fullDescription, categoryName, ...keywords].join(' ').toLowerCase()
+      const matchesSearch = !normalizedSearch || haystack.includes(normalizedSearch)
+      return matchesStatus && matchesCategory && matchesSearch
+    })
+
+  return { images: allImages.slice(skip, skip + take), total: allImages.length }
+}
+
+export async function updateLocalImageStatus(id, newStatus) {
+  const db = await ensureDb()
+  const image = db.images.find((item) => (item.id === id || item.slug === id) && !item.deletedAt)
+  if (!image) return null
+  image.status = newStatus
+  image.updatedAt = new Date().toISOString()
+  if (newStatus === 'PUBLISHED' && !image.publishedAt) {
+    image.publishedAt = new Date().toISOString()
+  }
+  await writeDb(db)
+  return image
+}
+
+export async function deleteLocalImage(id) {
+  const db = await ensureDb()
+  const imageIndex = db.images.findIndex((item) => (item.id === id || item.slug === id) && !item.deletedAt)
+  if (imageIndex === -1) return false
+  db.images[imageIndex].deletedAt = new Date().toISOString()
+  await writeDb(db)
+  return true
+}
+

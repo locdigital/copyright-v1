@@ -4,7 +4,8 @@ import { requireAdmin, requireAdminRole } from '../middleware/auth.js'
 import { prisma } from '../prisma.js'
 import { optimizeAndUploadImage } from '../services/uploadThingStorageProvider.js'
 import { writeAuditLog } from '../services/auditLogService.js'
-import { createLocalImage, getLocalCategories, isLocalJsonDbEnabled, localImageSlugExists } from '../services/localJsonDb.js'
+import { createLocalImage, deleteLocalImage, getLocalCategories, isLocalJsonDbEnabled, listAllLocalImagesAdmin, localImageSlugExists, updateLocalImageStatus } from '../services/localJsonDb.js'
+import { presentImage } from '../services/imagePresenter.js'
 import { slugify } from '../utils/slugify.js'
 
 const router = Router()
@@ -59,6 +60,128 @@ router.get('/categories', async (_request, response, next) => {
       categories = await getLocalCategories()
     }
     response.json({ categories })
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/images', async (request, response, next) => {
+  try {
+    const page = Math.max(Number(request.query.page || 1), 1)
+    const limit = Math.min(Math.max(Number(request.query.limit || 50), 1), 100)
+    const skip = (page - 1) * limit
+
+    if (isLocalJsonDbEnabled()) {
+      const { images, total } = await listAllLocalImagesAdmin({
+        category: request.query.category,
+        search: request.query.search || request.query.q,
+        status: request.query.status,
+        skip,
+        take: limit,
+      })
+      response.json({ images: images.map(presentImage), pagination: { page, limit, total, totalPages: Math.ceil(total / limit) || 1 } })
+      return
+    }
+
+    const where = { deletedAt: null }
+    if (request.query.status) {
+      where.status = String(request.query.status).toUpperCase()
+    }
+    if (request.query.category) {
+      const cat = String(request.query.category).trim()
+      where.category = { OR: [{ id: cat }, { slug: cat }, { name: { equals: cat, mode: 'insensitive' } }] }
+    }
+    if (request.query.search || request.query.q) {
+      const search = String(request.query.search || request.query.q).trim()
+      where.OR = [
+        { title: { contains: search, mode: 'insensitive' } },
+        { id: { contains: search, mode: 'insensitive' } },
+        { slug: { contains: search, mode: 'insensitive' } },
+        { shortDescription: { contains: search, mode: 'insensitive' } },
+      ]
+    }
+
+    try {
+      const [images, total] = await Promise.all([
+        prisma.image.findMany({
+          where,
+          include: { category: true, keywords: { include: { keyword: true } } },
+          orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
+          skip,
+          take: limit,
+        }),
+        prisma.image.count({ where }),
+      ])
+      response.json({ images: images.map(presentImage), pagination: { page, limit, total, totalPages: Math.ceil(total / limit) || 1 } })
+    } catch {
+      const { images, total } = await listAllLocalImagesAdmin({
+        category: request.query.category,
+        search: request.query.search || request.query.q,
+        status: request.query.status,
+        skip,
+        take: limit,
+      })
+      response.json({ images: images.map(presentImage), pagination: { page, limit, total, totalPages: Math.ceil(total / limit) || 1 } })
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.patch('/images/:id/status', requireAdminRole(['SUPER_ADMIN', 'CONTENT_MANAGER']), async (request, response, next) => {
+  try {
+    const { id } = request.params
+    const { status } = request.body
+    if (!status) return response.status(400).json({ message: 'Status is required.' })
+    const newStatus = String(status).toUpperCase()
+
+    if (isLocalJsonDbEnabled()) {
+      const updated = await updateLocalImageStatus(id, newStatus)
+      if (!updated) return response.status(404).json({ message: 'Image not found.' })
+      response.json({ image: presentImage(updated) })
+      return
+    }
+
+    try {
+      const updated = await prisma.image.update({
+        where: { id },
+        data: {
+          status: newStatus,
+          publishedAt: newStatus === 'PUBLISHED' ? new Date() : undefined,
+        },
+        include: { category: true, keywords: { include: { keyword: true } } },
+      })
+      response.json({ image: presentImage(updated) })
+    } catch {
+      const updated = await updateLocalImageStatus(id, newStatus)
+      if (!updated) return response.status(404).json({ message: 'Image not found.' })
+      response.json({ image: presentImage(updated) })
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.delete('/images/:id', requireAdminRole(['SUPER_ADMIN', 'CONTENT_MANAGER']), async (request, response, next) => {
+  try {
+    const { id } = request.params
+
+    if (isLocalJsonDbEnabled()) {
+      await deleteLocalImage(id)
+      response.json({ success: true, message: 'Image deleted successfully.' })
+      return
+    }
+
+    try {
+      await prisma.image.update({
+        where: { id },
+        data: { deletedAt: new Date() },
+      })
+      response.json({ success: true, message: 'Image deleted successfully.' })
+    } catch {
+      await deleteLocalImage(id)
+      response.json({ success: true, message: 'Image deleted successfully.' })
+    }
   } catch (error) {
     next(error)
   }
@@ -197,11 +320,11 @@ router.post(
           }).catch(() => {})
         }
 
-        return response.status(201).json({ image })
+        return response.status(201).json({ image: presentImage(image) })
       } catch (createErr) {
         console.error('Prisma image creation failed:', createErr)
         const image = await createLocalImage({ body, storedFile, admin: request.admin })
-        return response.status(201).json({ image, storage: 'fallback-local' })
+        return response.status(201).json({ image: presentImage(image), storage: 'fallback-local' })
       }
     } catch (error) {
       next(error)

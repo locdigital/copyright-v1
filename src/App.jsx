@@ -1,10 +1,10 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import AdminRoute from './components/AdminRoute'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import ScrollToTop from './components/ScrollToTop'
 import AdminImageCreatePage from './pages/AdminImageCreatePage'
+import AdminImageListPage from './pages/AdminImageListPage'
 import AdminLoginPage from './pages/AdminLoginPage'
 import CartPage from './pages/CartPage'
 import CheckoutPage from './pages/CheckoutPage'
@@ -30,12 +30,14 @@ export default function App() {
         <Route path="/login" element={<Navigate to="/admin/login" replace />} />
         <Route path="/signup" element={<Navigate to="/admin/login" replace />} />
         <Route path="/forgot-password" element={<Navigate to="/admin/login" replace />} />
-        <Route path="/dashboard" element={<Navigate to="/admin/images/new" replace />} />
-        <Route path="/contributor" element={<Navigate to="/admin/images/new" replace />} />
+        <Route path="/dashboard" element={<Navigate to="/admin/images" replace />} />
+        <Route path="/contributor" element={<Navigate to="/admin/images" replace />} />
         <Route path="/upload" element={<Navigate to="/admin/images/new" replace />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/admin" element={<AdminRoute><AdminImageListPage /></AdminRoute>} />
         <Route path="/admin/login" element={<AdminLoginPage />} />
+        <Route path="/admin/images" element={<AdminRoute><AdminImageListPage /></AdminRoute>} />
         <Route path="/admin/images/new" element={<AdminRoute><AdminImageCreatePage /></AdminRoute>} />
         <Route path="/:pageSlug" element={<StaticContentPage />} />
       </Routes>

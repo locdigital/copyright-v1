@@ -151,6 +151,65 @@ export async function fetchAdminCategories() {
   return request('/api/admin/categories')
 }
 
+export async function fetchAdminImages(params = {}) {
+  if (shouldUseStaticAdminPreview()) {
+    const local = getUserUploadedImages()
+    return { images: local, pagination: { page: 1, limit: 50, total: local.length, totalPages: 1 } }
+  }
+
+  const searchParams = new URLSearchParams()
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && String(value).trim() !== '') searchParams.set(key, value)
+  })
+  const query = searchParams.toString()
+  return request(`/api/admin/images${query ? `?${query}` : ''}`)
+}
+
+export async function updateAdminImageStatus(id, status) {
+  if (shouldUseStaticAdminPreview()) {
+    const local = getUserUploadedImages()
+    const item = local.find((img) => img.id === id || img.slug === id)
+    if (item) {
+      item.status = status
+      saveUserUploadedImage(item)
+    }
+    return { image: item }
+  }
+
+  const result = await request(`/api/admin/images/${id}/status`, {
+    method: 'PATCH',
+    body: JSON.stringify({ status }),
+  })
+
+  if (result?.image) {
+    saveUserUploadedImage(result.image)
+  }
+  return result
+}
+
+export async function deleteAdminImage(id) {
+  if (shouldUseStaticAdminPreview()) {
+    try {
+      const existing = getUserUploadedImages()
+      const filtered = existing.filter((item) => item.id !== id && item.slug !== id)
+      localStorage.setItem(USER_UPLOADED_IMAGES_KEY, JSON.stringify(filtered))
+    } catch (err) {
+      console.warn('Failed to delete image from localStorage:', err)
+    }
+    return { success: true }
+  }
+
+  const result = await request(`/api/admin/images/${id}`, { method: 'DELETE' })
+  try {
+    const existing = getUserUploadedImages()
+    const filtered = existing.filter((item) => item.id !== id && item.slug !== id)
+    localStorage.setItem(USER_UPLOADED_IMAGES_KEY, JSON.stringify(filtered))
+  } catch {
+    // Ignore error
+  }
+  return result
+}
+
 export async function createAdminImage(formData) {
   if (shouldUseStaticAdminPreview()) {
     const demo = saveDemoImage(formData)
