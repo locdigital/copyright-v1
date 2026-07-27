@@ -1,8 +1,8 @@
-import { Eye, FileImage, Folder, Layers, LogOut, Plus, RefreshCw, Search, ShieldCheck, Trash2, ToggleLeft, ToggleRight } from 'lucide-react'
+import { Edit, Eye, FileImage, Folder, Layers, LogOut, Plus, RefreshCw, Save, Search, ShieldCheck, Trash2, ToggleLeft, ToggleRight, X } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { categories as mockCategories } from '../data/mockData'
-import { deleteAdminImage, fetchAdminCategories, fetchAdminImages, getStoredAdmin, logoutAdmin, updateAdminImageStatus } from '../services/adminApi'
+import { deleteAdminImage, fetchAdminCategories, fetchAdminImages, getStoredAdmin, logoutAdmin, updateAdminImage, updateAdminImageStatus } from '../services/adminApi'
 
 export default function AdminImageListPage() {
   const navigate = useNavigate()
@@ -17,6 +17,13 @@ export default function AdminImageListPage() {
   const [actionLoadingId, setActionLoadingId] = useState(null)
   const [message, setMessage] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
+
+  // Edit Modal State
+  const [editingImage, setEditingImage] = useState(null)
+  const [editForm, setEditForm] = useState({})
+  const [newImageFile, setNewImageFile] = useState(null)
+  const [filePreview, setFilePreview] = useState('')
+  const [savingEdit, setSavingEdit] = useState(false)
 
   const loadData = async () => {
     setLoading(true)
@@ -85,6 +92,59 @@ export default function AdminImageListPage() {
       setErrorMessage(error.message || 'Không thể xóa ảnh.')
     } finally {
       setActionLoadingId(null)
+    }
+  }
+
+  // Open Edit Modal
+  const openEditModal = (image) => {
+    setEditingImage(image)
+    setNewImageFile(null)
+    setFilePreview('')
+    const catVal = typeof image.category === 'object' ? (image.category?.id || image.category?.slug) : (image.category || image.categoryId || '')
+    setEditForm({
+      title: image.title || '',
+      shortDescription: image.shortDescription || image.description || '',
+      fullDescription: image.fullDescription || image.description || '',
+      altText: image.altText || image.title || '',
+      categoryId: catVal,
+      keywords: Array.isArray(image.keywords) ? image.keywords.join(', ') : (image.keywords || ''),
+      standardLicensePrice: image.price || image.standardLicensePrice || 19,
+      extendedLicensePrice: image.extendedPrice || image.extendedLicensePrice || 79,
+      copyrightOwner: image.copyrightOwner || 'Image Copyright Hub',
+      copyrightNotice: image.copyrightNotice || `© ${new Date().getFullYear()} Image Copyright Hub`,
+      status: image.status || 'PUBLISHED',
+    })
+  }
+
+  const handleSaveEdit = async (e) => {
+    e.preventDefault()
+    if (!editingImage) return
+    setSavingEdit(true)
+    setMessage('')
+    setErrorMessage('')
+
+    try {
+      let payload
+      if (newImageFile) {
+        payload = new FormData()
+        payload.append('image', newImageFile)
+        Object.entries(editForm).forEach(([key, val]) => payload.append(key, String(val)))
+      } else {
+        payload = { ...editForm }
+      }
+
+      const result = await updateAdminImage(editingImage.id, payload)
+      const updatedImage = result.image || { ...editingImage, ...editForm }
+
+      setImages((current) =>
+        current.map((item) => (item.id === editingImage.id ? { ...item, ...updatedImage } : item))
+      )
+      setMessage(`Đã cập nhật ảnh "${editForm.title}" thành công!`)
+      setEditingImage(null)
+    } catch (error) {
+      setErrorMessage(error.message || 'Cập nhật ảnh thất bại.')
+    } finally {
+      setSavingEdit(false)
     }
   }
 
@@ -366,6 +426,15 @@ export default function AdminImageListPage() {
                               <Eye size={16} />
                             </a>
 
+                            {/* Edit Button */}
+                            <button
+                              onClick={() => openEditModal(img)}
+                              title="Chỉnh sửa thông tin ảnh"
+                              className="grid h-9 w-9 place-items-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-blue-400 hover:bg-blue-50 hover:text-blue-600"
+                            >
+                              <Edit size={16} />
+                            </button>
+
                             {/* Toggle Publish / Draft */}
                             <button
                               onClick={() => handleToggleStatus(img)}
@@ -401,6 +470,241 @@ export default function AdminImageListPage() {
           )}
         </div>
       </div>
+
+      {/* Edit Image Modal */}
+      {editingImage && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-slate-950/60 p-4 backdrop-blur-sm">
+          <div className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl sm:p-8">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div className="flex items-center gap-3">
+                <span className="grid h-10 w-10 place-items-center rounded-2xl bg-blue-50 text-blue-600">
+                  <Edit size={20} />
+                </span>
+                <div>
+                  <h2 className="text-xl font-black text-slate-950">Chỉnh sửa thông tin ảnh</h2>
+                  <p className="text-xs font-medium text-slate-500">ID: {editingImage.id}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setEditingImage(null)}
+                className="grid h-9 w-9 place-items-center rounded-full border border-slate-200 text-slate-500 hover:bg-slate-100"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveEdit} className="mt-6 space-y-6">
+              {/* Image Preview & Replacement File */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
+                  Hình ảnh hiện tại & Đổi ảnh mới (tùy chọn)
+                </label>
+                <div className="flex flex-col sm:flex-row items-center gap-4 rounded-2xl bg-slate-50 p-4 border border-slate-200">
+                  <div className="h-24 w-32 shrink-0 overflow-hidden rounded-xl bg-slate-200 border border-slate-300">
+                    <img
+                      src={filePreview || editingImage.image || editingImage.previewFileUrl || '/favicon.svg'}
+                      alt="Preview"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-1 text-center sm:text-left">
+                    <p className="text-sm font-bold text-slate-900">Thay thế file ảnh khác</p>
+                    <p className="text-xs text-slate-500 mt-0.5">
+                      Chọn file ảnh mới để tự động nén & upload đè lên UploadThing CDN.
+                    </p>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0]
+                        if (file) {
+                          setNewImageFile(file)
+                          setFilePreview(URL.createObjectURL(file))
+                        }
+                      }}
+                      className="mt-2 text-xs text-slate-600 file:mr-3 file:rounded-full file:border-0 file:bg-blue-600 file:px-4 file:py-1.5 file:text-xs file:font-bold file:text-white hover:file:bg-blue-700 cursor-pointer"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Title & Category */}
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                    Tiêu đề ảnh
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={editForm.title}
+                    onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 focus:border-blue-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                    Danh mục
+                  </label>
+                  <select
+                    value={editForm.categoryId}
+                    onChange={(e) => setEditForm({ ...editForm, categoryId: e.target.value })}
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 focus:border-blue-500 focus:outline-none"
+                  >
+                    {categories.map((c) => (
+                      <option key={c.id} value={c.id || c.slug}>
+                        {c.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Short & Full Description */}
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                    Mô tả ngắn
+                  </label>
+                  <input
+                    type="text"
+                    value={editForm.shortDescription}
+                    onChange={(e) => setEditForm({ ...editForm, shortDescription: e.target.value })}
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 focus:border-blue-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                    Alt Text (SEO)
+                  </label>
+                  <input
+                    type="text"
+                    value={editForm.altText}
+                    onChange={(e) => setEditForm({ ...editForm, altText: e.target.value })}
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 focus:border-blue-500 focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* Full Description */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                  Mô tả chi tiết
+                </label>
+                <textarea
+                  rows={3}
+                  value={editForm.fullDescription}
+                  onChange={(e) => setEditForm({ ...editForm, fullDescription: e.target.value })}
+                  className="w-full rounded-2xl border border-slate-200 bg-white p-3 text-sm font-medium text-slate-900 focus:border-blue-500 focus:outline-none"
+                />
+              </div>
+
+              {/* Keywords */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                  Keywords (cách nhau bằng dấu phẩy)
+                </label>
+                <input
+                  type="text"
+                  value={editForm.keywords}
+                  onChange={(e) => setEditForm({ ...editForm, keywords: e.target.value })}
+                  placeholder="animal, nature, cat, pet"
+                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 focus:border-blue-500 focus:outline-none"
+                />
+              </div>
+
+              {/* License Pricing & Status */}
+              <div className="grid grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                    Giá Standard ($)
+                  </label>
+                  <input
+                    type="number"
+                    value={editForm.standardLicensePrice}
+                    onChange={(e) => setEditForm({ ...editForm, standardLicensePrice: e.target.value })}
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-900 focus:border-blue-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                    Giá Extended ($)
+                  </label>
+                  <input
+                    type="number"
+                    value={editForm.extendedLicensePrice}
+                    onChange={(e) => setEditForm({ ...editForm, extendedLicensePrice: e.target.value })}
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-900 focus:border-blue-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                    Trạng thái
+                  </label>
+                  <select
+                    value={editForm.status}
+                    onChange={(e) => setEditForm({ ...editForm, status: e.target.value })}
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-900 focus:border-blue-500 focus:outline-none"
+                  >
+                    <option value="PUBLISHED">PUBLISHED (Hiển thị)</option>
+                    <option value="DRAFT">DRAFT (Tạm ẩn)</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Copyright Owner */}
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                    Chủ sở hữu Copyright
+                  </label>
+                  <input
+                    type="text"
+                    value={editForm.copyrightOwner}
+                    onChange={(e) => setEditForm({ ...editForm, copyrightOwner: e.target.value })}
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 focus:border-blue-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                    Thông báo Bản quyền
+                  </label>
+                  <input
+                    type="text"
+                    value={editForm.copyrightNotice}
+                    onChange={(e) => setEditForm({ ...editForm, copyrightNotice: e.target.value })}
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 focus:border-blue-500 focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* Submit Buttons */}
+              <div className="flex items-center justify-end gap-3 border-t border-slate-100 pt-4">
+                <button
+                  type="button"
+                  onClick={() => setEditingImage(null)}
+                  className="rounded-full border border-slate-200 px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-50"
+                >
+                  Hủy bỏ
+                </button>
+                <button
+                  type="submit"
+                  disabled={savingEdit}
+                  className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-2.5 text-sm font-black text-white hover:bg-blue-700 disabled:bg-blue-300"
+                >
+                  <Save size={16} />
+                  {savingEdit ? 'Đang lưu...' : 'Lưu thay đổi'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </main>
   )
 }

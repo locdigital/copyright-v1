@@ -248,3 +248,41 @@ export async function deleteLocalImage(id) {
   return true
 }
 
+export async function updateLocalImageDetails(id, body, storedFile = null) {
+  const db = await ensureDb()
+  const image = db.images.find((item) => (item.id === id || item.slug === id) && !item.deletedAt)
+  if (!image) return null
+
+  if (body.title) image.title = String(body.title).trim()
+  if (body.shortDescription !== undefined) image.shortDescription = body.shortDescription || null
+  if (body.fullDescription !== undefined) image.fullDescription = body.fullDescription || null
+  if (body.altText) image.altText = String(body.altText).trim()
+  if (body.pageTitle !== undefined) image.pageTitle = body.pageTitle || image.title
+  if (body.metaDescription !== undefined) image.metaDescription = body.metaDescription || null
+  if (body.canonicalUrl !== undefined) image.canonicalUrl = body.canonicalUrl || null
+  if (body.standardLicensePrice) image.standardLicensePrice = Number(body.standardLicensePrice)
+  if (body.extendedLicensePrice) image.extendedLicensePrice = Number(body.extendedLicensePrice)
+  if (body.copyrightOwner) image.copyrightOwner = String(body.copyrightOwner).trim()
+  if (body.copyrightNotice !== undefined) image.copyrightNotice = body.copyrightNotice || null
+  if (body.status) image.status = body.status
+
+  if (body.categoryId) {
+    image.categoryId = body.categoryId
+    image.category = db.categories.find((c) => c.id === body.categoryId || c.slug === body.categoryId) || image.category
+  }
+
+  if (body.keywords !== undefined) {
+    const keywordNames = String(body.keywords || '').split(',').map((k) => k.trim()).filter(Boolean)
+    image.keywords = keywordNames.map((name) => ({ name, slug: slugify(name) }))
+  }
+
+  if (storedFile) {
+    Object.assign(image, storedFile)
+  }
+
+  image.updatedAt = new Date().toISOString()
+  await writeDb(db)
+  return image
+}
+
+

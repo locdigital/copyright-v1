@@ -4,7 +4,7 @@ import { requireAdmin, requireAdminRole } from '../middleware/auth.js'
 import { prisma } from '../prisma.js'
 import { optimizeAndUploadImage } from '../services/uploadThingStorageProvider.js'
 import { writeAuditLog } from '../services/auditLogService.js'
-import { createLocalImage, deleteLocalImage, getLocalCategories, isLocalJsonDbEnabled, listAllLocalImagesAdmin, localImageSlugExists, updateLocalImageStatus } from '../services/localJsonDb.js'
+import { createLocalImage, deleteLocalImage, getLocalCategories, isLocalJsonDbEnabled, listAllLocalImagesAdmin, localImageSlugExists, updateLocalImageDetails, updateLocalImageStatus } from '../services/localJsonDb.js'
 import { presentImage } from '../services/imagePresenter.js'
 import { slugify } from '../utils/slugify.js'
 
@@ -186,6 +186,99 @@ router.delete('/images/:id', requireAdminRole(['SUPER_ADMIN', 'CONTENT_MANAGER']
     next(error)
   }
 })
+
+router.put(
+  '/images/:id',
+  requireAdminRole(['SUPER_ADMIN', 'CONTENT_MANAGER']),
+  upload.single('image'),
+  async (request, response, next) => {
+    try {
+      const { id } = request.params
+      const body = request.body
+
+      let storedFile = null
+      if (request.file) {
+        storedFile = await optimizeAndUploadImage(request.file)
+      }
+
+      if (isLocalJsonDbEnabled()) {
+        const updated = await updateLocalImageDetails(id, body, storedFile)
+        if (!updated) return response.status(404).json({ message: 'Image not found.' })
+        response.json({ image: presentImage(updated) })
+        return
+      }
+
+      let categoryId = undefined
+      if (body.categoryId) {
+        try {
+          let dbCategory = await prisma.category.findFirst({
+            where: { OR: [{ id: body.categoryId }, { slug: slugify(body.categoryId) }] },
+          })
+          if (!dbCategory) {
+            const categoryName = String(body.categoryId).trim()
+            const catSlug = slugify(categoryName) || 'general'
+            dbCategory = await prisma.category.upsert({
+              where: { slug: catSlug },
+              create: { name: categoryName, slug: catSlug },
+              update: {},
+            })
+          }
+          categoryId = dbCategory.id
+        } catch (catErr) {
+          console.warn('Category resolution error on update:', catErr.message)
+        }
+      }
+
+      const updateData = {
+        ...(body.title && { title: String(body.title).trim() }),
+        ...(body.shortDescription !== undefined && { shortDescription: body.shortDescription || null }),
+        ...(body.fullDescription !== undefined && { fullDescription: body.fullDescription || null }),
+        ...(body.altText && { altText: String(body.altText).trim() }),
+        ...(body.pageTitle !== undefined && { pageTitle: body.pageTitle || body.title || null }),
+        ...(body.metaDescription !== undefined && { metaDescription: body.metaDescription || null }),
+        ...(body.standardLicensePrice && { standardLicensePrice: Number(body.standardLicensePrice) }),
+        ...(body.extendedLicensePrice && { extendedLicensePrice: Number(body.extendedLicensePrice) }),
+        ...(body.copyrightOwner && { copyrightOwner: String(body.copyrightOwner).trim() }),
+        ...(body.copyrightNotice !== undefined && { copyrightNotice: body.copyrightNotice || null }),
+        ...(body.status && { status: body.status }),
+        ...(categoryId && { categoryId }),
+        ...(storedFile && storedFile),
+      }
+
+      if (body.keywords !== undefined) {
+        const rawKeywords = parseKeywords(body.keywords)
+        const validKeywords = rawKeywords.filter((name) => Boolean(slugify(name)))
+        updateData.keywords = {
+          deleteMany: {},
+          create: validKeywords.map((name) => ({
+            keyword: {
+              connectOrCreate: {
+                where: { slug: slugify(name) },
+                create: { name, slug: slugify(name) },
+              },
+            },
+          })),
+        }
+      }
+
+      try {
+        const updated = await prisma.image.update({
+          where: { id },
+          data: updateData,
+          include: { category: true, keywords: { include: { keyword: true } } },
+        })
+        response.json({ image: presentImage(updated) })
+      } catch (dbErr) {
+        console.warn('Prisma image update failed, using local DB fallback:', dbErr.message)
+        const updated = await updateLocalImageDetails(id, body, storedFile)
+        if (!updated) return response.status(404).json({ message: 'Image not found.' })
+        response.json({ image: presentImage(updated) })
+      }
+    } catch (error) {
+      next(error)
+    }
+  },
+)
 
 router.post(
   '/images',

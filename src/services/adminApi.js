@@ -187,6 +187,35 @@ export async function updateAdminImageStatus(id, status) {
   return result
 }
 
+export async function updateAdminImage(id, payload) {
+  if (shouldUseStaticAdminPreview()) {
+    const local = getUserUploadedImages()
+    const existing = local.find((item) => item.id === id || item.slug === id)
+    if (!existing) throw new Error('Image not found in local preview.')
+
+    let updatedObj = { ...existing }
+    if (payload instanceof FormData) {
+      const entries = Object.fromEntries(payload.entries())
+      Object.assign(updatedObj, entries)
+    } else {
+      Object.assign(updatedObj, payload)
+    }
+    saveUserUploadedImage(updatedObj)
+    return { image: updatedObj }
+  }
+
+  const isForm = payload instanceof FormData
+  const result = await request(`/api/admin/images/${id}`, {
+    method: 'PUT',
+    body: isForm ? payload : JSON.stringify(payload),
+  })
+
+  if (result?.image) {
+    saveUserUploadedImage(result.image)
+  }
+  return result
+}
+
 export async function deleteAdminImage(id) {
   if (shouldUseStaticAdminPreview()) {
     try {
