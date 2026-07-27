@@ -15,8 +15,8 @@ export default function AdminLoginPage() {
 
   const validate = () => {
     const nextErrors = {}
-    if (!/^\S+@\S+\.\S+$/.test(form.email)) nextErrors.email = 'Nhập email admin hợp lệ.'
-    if (form.password.length < 8) nextErrors.password = 'Mật khẩu tối thiểu 8 ký tự.'
+    if (!form.email.trim()) nextErrors.email = 'Vui lòng nhập tài khoản hoặc email.'
+    if (form.password.length < 6) nextErrors.password = 'Mật khẩu tối thiểu 6 ký tự.'
     setErrors(nextErrors)
     return Object.keys(nextErrors).length === 0
   }
@@ -49,8 +49,8 @@ export default function AdminLoginPage() {
         {serverError && <div className="mb-5 rounded-2xl bg-red-50 p-4 text-sm font-semibold text-red-700">{serverError}</div>}
         <form onSubmit={submit} className="grid gap-5">
           <label className="grid gap-2 text-sm font-semibold text-slate-700">
-            Email
-            <input value={form.email} onChange={(event) => update('email', event.target.value)} className="input" type="email" placeholder="admin@company.com" autoComplete="username" />
+            Tài khoản / Email
+            <input value={form.email} onChange={(event) => update('email', event.target.value)} className="input" type="text" placeholder="admin" autoComplete="username" />
             {errors.email && <span className="text-sm font-medium text-red-600">{errors.email}</span>}
           </label>
           <label className="grid gap-2 text-sm font-semibold text-slate-700">
