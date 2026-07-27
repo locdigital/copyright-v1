@@ -59,7 +59,7 @@ async function writeDb(data) {
 }
 
 export function isLocalJsonDbEnabled() {
-  return process.env.LOCAL_JSON_DB === 'true' || !process.env.DATABASE_URL
+  return process.env.LOCAL_JSON_DB === 'true'
 }
 
 export async function findLocalAdminByEmail(email) {

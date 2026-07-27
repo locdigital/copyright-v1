@@ -62,7 +62,7 @@ router.get('/', async (request, response, next) => {
 
     const where = buildWhere(request.query)
     const [images, total] = await Promise.all([
-      prisma.image.findMany({ where, include: imageInclude, orderBy: [{ featured: 'desc' }, { publishedAt: 'desc' }, { createdAt: 'desc' }], skip, take: limit }),
+      prisma.image.findMany({ where, include: imageInclude, orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }, { featured: 'desc' }], skip, take: limit }),
       prisma.image.count({ where }),
     ])
 
