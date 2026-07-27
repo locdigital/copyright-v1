@@ -66,17 +66,56 @@ export async function fetchPublicImages(params = {}) {
     if (value !== undefined && value !== null && String(value).trim() !== '') searchParams.set(key, value)
   })
   const query = searchParams.toString()
+
+  let apiImages = []
   try {
-    return await request(`/api/images${query ? `?${query}` : ''}`)
-  } catch {
-    return fetchStaticImages(params)
+    const data = await request(`/api/images${query ? `?${query}` : ''}`)
+    if (Array.isArray(data?.images)) {
+      apiImages = data.images
+    }
+  } catch (error) {
+    console.warn('API fetch warning, using static fallback:', error)
+  }
+
+  const staticData = await fetchStaticImages(params)
+  const staticImages = staticData.images || []
+
+  const seenSlugs = new Set()
+  const combined = []
+
+  for (const img of apiImages) {
+    const key = img.slug || img.id
+    if (key && !seenSlugs.has(key)) {
+      seenSlugs.add(key)
+      combined.push(img)
+    }
+  }
+
+  for (const img of staticImages) {
+    const key = img.slug || img.id
+    if (key && !seenSlugs.has(key)) {
+      seenSlugs.add(key)
+      combined.push(img)
+    }
+  }
+
+  const page = Math.max(Number(params.page || 1), 1)
+  const limit = Math.min(Math.max(Number(params.limit || 24), 1), 60)
+  const start = (page - 1) * limit
+
+  return {
+    images: combined.slice(start, start + limit),
+    pagination: { page, limit, total: combined.length, totalPages: Math.ceil(combined.length / limit) || 1 },
+    source: apiImages.length > 0 ? 'combined-live-and-static' : 'static-marketplace',
   }
 }
 
 export async function fetchPublicImage(id) {
   try {
-    return await request(`/api/images/${id}`)
-  } catch {
-    return fetchStaticImage(id)
+    const data = await request(`/api/images/${id}`)
+    if (data?.image) return data
+  } catch (error) {
+    console.warn('API fetch single image warning:', error)
   }
+  return fetchStaticImage(id)
 }

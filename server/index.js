@@ -17,10 +17,10 @@ app.use(express.json({ limit: '2mb' }))
 app.use(cookieParser())
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')))
 
-app.get('/api/health', (_request, response) => response.json({ ok: true }))
-app.use('/api/images', publicImageRoutes)
-app.use('/api/admin/auth', adminAuthRoutes)
-app.use('/api/admin', adminImageRoutes)
+app.get(['/api/health', '/health'], (_request, response) => response.json({ ok: true }))
+app.use(['/api/images', '/images'], publicImageRoutes)
+app.use(['/api/admin/auth', '/admin/auth'], adminAuthRoutes)
+app.use(['/api/admin', '/admin'], adminImageRoutes)
 
 app.use((error, _request, response, _next) => {
   console.error(error)
@@ -34,4 +34,3 @@ if (!process.env.VERCEL) {
 }
 
 export default app
-
