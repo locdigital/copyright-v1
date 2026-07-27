@@ -190,6 +190,11 @@ export default function AdminImageCreatePage() {
       setImageFile(null)
       setPreview('')
     } catch (error) {
+      if (error.message?.includes('session') || error.message?.includes('authentication') || error.message?.includes('Invalid')) {
+        setErrorMessage('Phiên làm việc đã hết hạn. Hệ thống đang chuyển hướng tới trang Đăng nhập...')
+        setTimeout(() => navigate('/admin/login'), 1500)
+        return
+      }
       setErrorMessage(error.message || 'Upload thất bại. Vui lòng kiểm tra backend, database và UploadThing credentials.')
     } finally {
       setLoading(false)
