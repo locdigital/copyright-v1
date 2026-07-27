@@ -288,7 +288,14 @@ export default function AdminImageCreatePage() {
             </div>
           </Panel>
 
-          {message && <div className="rounded-2xl bg-green-50 p-4 text-sm font-bold text-green-700">{message}</div>}
+          {message && (
+            <div className="rounded-2xl bg-green-50 p-4 text-sm font-bold text-green-700 space-y-2">
+              <p>{message}</p>
+              <a href="/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-extrabold text-blue-600 hover:underline">
+                Xem ảnh vừa đăng ngay trên Trang Chủ →
+              </a>
+            </div>
+          )}
           {errorMessage && <div className="rounded-2xl bg-red-50 p-4 text-sm font-bold text-red-700">{errorMessage}</div>}
           <button disabled={loading} className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-4 font-black text-white shadow-sm transition hover:bg-blue-700 disabled:bg-blue-300"><Save size={19} />{loading ? 'Đang nén & upload...' : 'Lưu ảnh vào CMS'}</button>
         </aside>

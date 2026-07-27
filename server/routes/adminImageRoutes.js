@@ -124,7 +124,7 @@ router.post(
           editorialUseOnly: body.editorialUseOnly === 'true',
           modelReleaseAvailable: body.modelReleaseAvailable === 'true',
           propertyReleaseAvailable: body.propertyReleaseAvailable === 'true',
-          status: body.status || 'DRAFT',
+          status: body.status || 'PUBLISHED',
           featured: body.featured === 'true',
           publishedAt: parsePublishedAt(body),
           scheduledAt: body.scheduledAt ? new Date(body.scheduledAt) : null,

@@ -150,7 +150,7 @@ export async function createLocalImage({ body, storedFile, admin }) {
     editorialUseOnly: body.editorialUseOnly === 'true',
     modelReleaseAvailable: body.modelReleaseAvailable === 'true',
     propertyReleaseAvailable: body.propertyReleaseAvailable === 'true',
-    status: body.status || 'DRAFT',
+    status: body.status || 'PUBLISHED',
     featured: body.featured === 'true',
     publishedAt: body.publishedAt || null,
     scheduledAt: body.scheduledAt || null,
