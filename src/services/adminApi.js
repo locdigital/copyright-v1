@@ -1,22 +1,17 @@
-const CONFIGURED_API_URL = import.meta.env.VITE_API_URL || ''
-const API_URL = CONFIGURED_API_URL || 'http://localhost:4000'
-const ADMIN_SESSION_KEY = 'imagecopy_admin_session'
-
-function isLocalHostname(hostname) {
-  return ['localhost', '127.0.0.1', '::1'].includes(hostname)
-}
-
-function isLocalApiUrl() {
-  try {
-    return isLocalHostname(new URL(API_URL).hostname)
-  } catch {
-    return false
+function getApiUrl() {
+  if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL
+  if (typeof window !== 'undefined') {
+    const isLocal = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname)
+    if (!isLocal) return ''
   }
+  return 'http://localhost:4000'
 }
+
+const ADMIN_SESSION_KEY = 'imagecopy_admin_session'
 
 function shouldUseStaticAdminPreview() {
   if (typeof window === 'undefined') return false
-  return !isLocalHostname(window.location.hostname) && (!CONFIGURED_API_URL || isLocalApiUrl())
+  return window.location.hostname.endsWith('.surge.sh') || window.location.hostname.endsWith('.github.io')
 }
 
 function getStaticAdmin(email) {
@@ -52,10 +47,11 @@ export function clearStoredAdmin() {
 
 async function request(path, options = {}) {
   const controller = new AbortController()
-  const timeoutMs = options.body instanceof FormData ? 120000 : 4000
+  const timeoutMs = options.body instanceof FormData ? 120000 : 15000
   const timeout = setTimeout(() => controller.abort(), timeoutMs)
+  const baseUrl = getApiUrl()
   try {
-    const response = await fetch(`${API_URL}${path}`, {
+    const response = await fetch(`${baseUrl}${path}`, {
       credentials: 'include',
       headers: options.body instanceof FormData ? undefined : { 'Content-Type': 'application/json' },
       signal: controller.signal,

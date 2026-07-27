@@ -1,19 +1,17 @@
-const CONFIGURED_API_URL = import.meta.env.VITE_API_URL || ''
-const API_URL = CONFIGURED_API_URL || 'http://localhost:4000'
+function getApiUrl() {
+  if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL
+  if (typeof window !== 'undefined') {
+    const isLocal = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname)
+    if (!isLocal) return ''
+  }
+  return 'http://localhost:4000'
+}
 
 let staticMarketplaceCache = null
 
 async function request(path) {
-  if (typeof window !== 'undefined' && !['localhost', '127.0.0.1', '::1'].includes(window.location.hostname)) {
-    try {
-      const apiHostname = new URL(API_URL).hostname
-      if (['localhost', '127.0.0.1', '::1'].includes(apiHostname)) throw new Error('Skip local API on deployed site.')
-    } catch (error) {
-      if (error.message === 'Skip local API on deployed site.') throw error
-    }
-  }
-
-  const response = await fetch(`${API_URL}${path}`)
+  const baseUrl = getApiUrl()
+  const response = await fetch(`${baseUrl}${path}`)
   const data = await response.json().catch(() => ({}))
   if (!response.ok) throw new Error(data.message || 'Request failed.')
   return data
