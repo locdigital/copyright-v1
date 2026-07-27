@@ -104,24 +104,40 @@ router.post(
         return
       }
 
-      const keywordNames = parseKeywords(body.keywords)
+      const rawKeywords = parseKeywords(body.keywords)
+      const validKeywords = rawKeywords.filter((name) => Boolean(slugify(name)))
 
-      let dbAdminId = request.admin?.id
+      let dbAdminId = null
       try {
-        const firstAdmin = await prisma.admin.findFirst({ where: { isActive: true } })
-        if (firstAdmin) dbAdminId = firstAdmin.id
+        if (request.admin?.id && request.admin.id !== 'demo-admin') {
+          const adminCheck = await prisma.admin.findUnique({ where: { id: request.admin.id } })
+          if (adminCheck) dbAdminId = adminCheck.id
+        }
+        if (!dbAdminId) {
+          const firstAdmin = await prisma.admin.findFirst({ where: { isActive: true } })
+          if (firstAdmin) dbAdminId = firstAdmin.id
+        }
       } catch (adminErr) {
         console.warn('Could not fetch DB admin ID:', adminErr.message)
       }
 
-      let categoryId = body.categoryId
+      let categoryId = null
       try {
-        const dbCategory = await prisma.category.findFirst({
-          where: { OR: [{ id: categoryId }, { slug: slugify(categoryId) }] },
+        let dbCategory = await prisma.category.findFirst({
+          where: { OR: [{ id: body.categoryId }, { slug: slugify(body.categoryId) }] },
         })
-        if (dbCategory) categoryId = dbCategory.id
+        if (!dbCategory) {
+          const categoryName = String(body.categoryId || 'General').trim()
+          const catSlug = slugify(categoryName) || 'general'
+          dbCategory = await prisma.category.upsert({
+            where: { slug: catSlug },
+            create: { name: categoryName, slug: catSlug },
+            update: {},
+          })
+        }
+        categoryId = dbCategory.id
       } catch (catErr) {
-        console.warn('Could not fetch DB category ID:', catErr.message)
+        console.warn('Could not resolve category ID:', catErr.message)
       }
 
       try {
@@ -138,8 +154,8 @@ router.post(
             ...storedFile,
             orientation: body.orientation || storedFile.orientation || null,
             primaryColor: body.primaryColor || null,
-            categoryId,
-            uploadedByAdminId: dbAdminId || 'demo-admin',
+            categoryId: categoryId || slugify(body.categoryId) || 'general',
+            uploadedByAdminId: dbAdminId,
             standardLicensePrice: body.standardLicensePrice ? Number(body.standardLicensePrice) : 19,
             extendedLicensePrice: body.extendedLicensePrice ? Number(body.extendedLicensePrice) : 79,
             currency: body.currency || 'USD',
@@ -156,8 +172,8 @@ router.post(
             featured: body.featured === 'true',
             publishedAt: parsePublishedAt(body),
             scheduledAt: body.scheduledAt ? new Date(body.scheduledAt) : null,
-            keywords: {
-              create: keywordNames.map((name) => ({
+            keywords: validKeywords.length > 0 ? {
+              create: validKeywords.map((name) => ({
                 keyword: {
                   connectOrCreate: {
                     where: { slug: slugify(name) },
@@ -165,7 +181,7 @@ router.post(
                   },
                 },
               })),
-            },
+            } : undefined,
           },
           include: { category: true, keywords: { include: { keyword: true } } },
         })
@@ -183,7 +199,7 @@ router.post(
 
         return response.status(201).json({ image })
       } catch (createErr) {
-        console.warn('Prisma image creation failed, falling back to local DB:', createErr.message)
+        console.error('Prisma image creation failed:', createErr)
         const image = await createLocalImage({ body, storedFile, admin: request.admin })
         return response.status(201).json({ image, storage: 'fallback-local' })
       }
