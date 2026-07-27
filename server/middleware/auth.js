@@ -9,20 +9,29 @@ export async function requireAdmin(request, response, next) {
     if (!token) return response.status(401).json({ message: 'Admin authentication required.' })
 
     const payload = jwt.verify(token, env.jwtSecret)
-    if (isLocalJsonDbEnabled()) {
-      const localAdmin = await getLocalAdminById(payload.sub)
-      if (!localAdmin) return response.status(401).json({ message: 'Admin account is inactive or missing.' })
-      request.admin = { id: localAdmin.id, fullName: localAdmin.fullName, email: localAdmin.email, role: localAdmin.role, avatarUrl: localAdmin.avatarUrl }
-      next()
-      return
+
+    let admin = null
+    if (Boolean(process.env.DATABASE_URL) && !isLocalJsonDbEnabled()) {
+      try {
+        admin = await prisma.admin.findFirst({
+          where: { id: payload.sub, isActive: true },
+          select: { id: true, fullName: true, email: true, role: true, avatarUrl: true },
+        })
+      } catch {
+        admin = null
+      }
     }
 
-    const admin = await prisma.admin.findFirst({
-      where: { id: payload.sub, isActive: true },
-      select: { id: true, fullName: true, email: true, role: true, avatarUrl: true },
-    })
+    if (!admin) {
+      const localAdmin = await getLocalAdminById(payload.sub)
+      if (localAdmin) {
+        request.admin = { id: localAdmin.id, fullName: localAdmin.fullName, email: localAdmin.email, role: localAdmin.role, avatarUrl: localAdmin.avatarUrl }
+        next()
+        return
+      }
+      return response.status(401).json({ message: 'Admin account is inactive or missing.' })
+    }
 
-    if (!admin) return response.status(401).json({ message: 'Admin account is inactive or missing.' })
     request.admin = admin
     next()
   } catch {

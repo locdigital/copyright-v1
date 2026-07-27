@@ -27,39 +27,58 @@ router.post('/login', async (request, response, next) => {
     const input = String(email).toLowerCase().trim()
     const targetEmail = input === 'admin' ? 'admin@imagecopyrighthub.test' : input
 
-    if (isLocalJsonDbEnabled()) {
-      let admin = await findLocalAdminByEmail(targetEmail)
-      if (!admin && input === 'admin') admin = await findLocalAdminByEmail('admin@example.com')
+    let admin = null
+    let isPrismaAuth = false
 
-      const validPassword = password === env.localAdminPassword || password === 'Admin@123456'
-      if (!admin || !validPassword) return response.status(401).json({ message: 'Thông tin đăng nhập không chính xác.' })
-
-      const token = jwt.sign({ sub: admin.id, role: admin.role }, env.jwtSecret, { expiresIn: remember ? '30d' : '8h' })
-      await updateLocalAdminLogin(admin.id)
-      await writeLocalAuditLog({ adminId: admin.id, action: 'ADMIN_LOGIN_LOCAL_JSON', entityType: 'Admin', entityId: admin.id, ipAddress: request.ip })
-
-      response.cookie(env.adminCookieName, token, adminCookieOptions(Boolean(remember)))
-      response.json({ admin: { id: admin.id, fullName: admin.fullName, email: admin.email, role: admin.role, avatarUrl: admin.avatarUrl } })
-      return
+    if (Boolean(process.env.DATABASE_URL) && !isLocalJsonDbEnabled()) {
+      try {
+        admin = await prisma.admin.findFirst({
+          where: {
+            OR: [
+              { email: targetEmail },
+              { email: input },
+              { email: 'admin@imagecopyrighthub.test' },
+            ],
+          },
+        })
+        if (admin && admin.isActive) {
+          const validPassword = await bcrypt.compare(password, admin.passwordHash)
+          if (validPassword) {
+            isPrismaAuth = true
+          } else {
+            admin = null
+          }
+        } else {
+          admin = null
+        }
+      } catch (dbError) {
+        console.warn('Prisma auth error, falling back to local DB:', dbError.message)
+        admin = null
+      }
     }
 
-    let admin = await prisma.admin.findFirst({
-      where: {
-        OR: [
-          { email: targetEmail },
-          { email: input },
-          { email: 'admin@imagecopyrighthub.test' },
-        ],
-      },
-    })
-    if (!admin || !admin.isActive) return response.status(401).json({ message: 'Thông tin đăng nhập không chính xác.' })
+    if (!isPrismaAuth) {
+      const localAdmin = (await findLocalAdminByEmail(targetEmail)) || (await findLocalAdminByEmail('admin@example.com'))
+      const validPassword = password === env.localAdminPassword || password === 'Admin@123456'
+      if (!localAdmin || !validPassword) {
+        return response.status(401).json({ message: 'Thông tin đăng nhập không chính xác.' })
+      }
 
-    const validPassword = await bcrypt.compare(password, admin.passwordHash)
-    if (!validPassword) return response.status(401).json({ message: 'Thông tin đăng nhập không chính xác.' })
+      const token = jwt.sign({ sub: localAdmin.id, role: localAdmin.role }, env.jwtSecret, { expiresIn: remember ? '30d' : '8h' })
+      await updateLocalAdminLogin(localAdmin.id)
+      await writeLocalAuditLog({ adminId: localAdmin.id, action: 'ADMIN_LOGIN_LOCAL_JSON', entityType: 'Admin', entityId: localAdmin.id, ipAddress: request.ip })
+
+      response.cookie(env.adminCookieName, token, adminCookieOptions(Boolean(remember)))
+      return response.json({ admin: { id: localAdmin.id, fullName: localAdmin.fullName, email: localAdmin.email, role: localAdmin.role, avatarUrl: localAdmin.avatarUrl } })
+    }
 
     const token = jwt.sign({ sub: admin.id, role: admin.role }, env.jwtSecret, { expiresIn: remember ? '30d' : '8h' })
-    await prisma.admin.update({ where: { id: admin.id }, data: { lastLoginAt: new Date() } })
-    await writeAuditLog({ adminId: admin.id, action: 'ADMIN_LOGIN', entityType: 'Admin', entityId: admin.id, ipAddress: request.ip })
+    try {
+      await prisma.admin.update({ where: { id: admin.id }, data: { lastLoginAt: new Date() } })
+      await writeAuditLog({ adminId: admin.id, action: 'ADMIN_LOGIN', entityType: 'Admin', entityId: admin.id, ipAddress: request.ip })
+    } catch (logError) {
+      console.warn('Audit log write error:', logError.message)
+    }
 
     response.cookie(env.adminCookieName, token, adminCookieOptions(Boolean(remember)))
     response.json({ admin: { id: admin.id, fullName: admin.fullName, email: admin.email, role: admin.role, avatarUrl: admin.avatarUrl } })
